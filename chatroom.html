@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天室 | 向球的前卫程序员博客</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet preload" as="font" crossorigin="anonymous">
+    <!-- 移除Socket.io依赖，使用本地存储实现局域网聊天 -->
+    <style>
+        /* 聊天室特定样式 */
+        .chatroom-section {
+            padding: 120px 0 80px;
+        }
+        
+        .chatroom-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            background-color: rgba(10, 10, 10, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chatroom-sidebar {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-title {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            color: var(--accent-1);
+            margin-bottom: 10px;
+        }
+        
+        .online-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .online-list {
+            margin-bottom: 30px;
+        }
+        
+        .online-list h3 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .online-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .online-user:hover {
+            transform: translateX(5px);
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--bg-primary);
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .user-name {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .user-status {
+            font-size: 0.8rem;
+            color: var(--accent-1);
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-1);
+            animation: pulse 2s infinite;
+        }
+        
+        .chatroom-main {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            padding: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .chat-title {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            color: var(--accent-1);
+            margin-bottom: 10px;
+        }
+        
+        .chat-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .message {
+            max-width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .message.own {
+            align-self: flex-end;
+        }
+        
+        .message.other {
+            align-self: flex-start;
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .message-sender {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .message-time {
+            color: var(--text-secondary);
+        }
+        
+        .message-content {
+            padding: 15px 20px;
+            border-radius: 18px;
+            line-height: 1.4;
+        }
+        
+        .message.own .message-content {
+            background-color: var(--accent-1);
+            color: var(--bg-primary);
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message.other .message-content {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+        }
+        
+        .message.system {
+            align-self: center;
+            max-width: 90%;
+        }
+        
+        .message.system .message-content {
+            background-color: rgba(102, 0, 255, 0.2);
+            color: var(--accent-5);
+            text-align: center;
+            border-radius: 20px;
+            font-style: italic;
+        }
+        
+        .chat-input-area {
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .chat-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 15px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: var(--text-primary);
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+        
+        .chat-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .send-button {
+            padding: 0 30px;
+            background-color: var(--accent-1);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 30px;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+        }
+        
+        .send-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .user-form {
+            background-color: rgba(10, 10, 10, 0.8);
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .user-form h2 {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            color: var(--accent-1);
+            margin-bottom: 30px;
+        }
+        
+        .user-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: var(--font-secondary);
+        }
+        
+        .user-form input:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+        
+        .user-form button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent-1);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .user-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .chatroom-container {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                margin: 0 20px;
+            }
+            
+            .chatroom-sidebar {
+                display: none;
+            }
+            
+            .chat-messages {
+                max-height: 500px;
+            }
+            
+            .user-form {
+                margin: 50px 20px;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 数字雨背景 -->
+    <canvas id="matrix-bg"></canvas>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">xiang</span>
+                <span class="logo-subtext">qiu</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home" class="nav-link">首页</a>
+                <a href="index.html#blog" class="nav-link">博客</a>
+                <a href="index.html#projects" class="nav-link">项目</a>
+                <a href="index.html#about" class="nav-link">关于</a>
+                <a href="index.html#contact" class="nav-link">联系</a>
+                <a href="chatroom.html" class="nav-link">聊天室</a>
+            </div>
+            <button class="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- 聊天室区域 -->
+    <section class="chatroom-section">
+        <div class="container">
+            <h2 class="section-title">实时聊天室</h2>
+            
+            <!-- 用户登录表单 -->
+            <div id="user-form" class="user-form">
+                <h2>加入聊天室</h2>
+                <input type="text" id="username" placeholder="请输入您的昵称" required>
+                <button id="join-button">加入聊天</button>
+            </div>
+            
+            <!-- 聊天室主界面 -->
+            <div id="chatroom" class="chatroom-container" style="display: none;">
+                <!-- 侧边栏 -->
+                <div class="chatroom-sidebar">
+                    <div class="sidebar-header">
+                        <h2 class="sidebar-title">聊天室</h2>
+                        <p class="online-count">当前在线: <span id="online-count">0</span></p>
+                    </div>
+                    
+                    <div class="online-list">
+                        <h3>在线用户</h3>
+                        <div id="online-users"></div>
+                    </div>
+                    
+                    <div class="sidebar-footer">
+                        <button id="leave-button" class="btn btn-secondary" style="width: 100%; margin-top: 20px;">离开聊天室</button>
+                    </div>
+                </div>
+                
+                <!-- 主聊天区域 -->
+                <div class="chatroom-main">
+                    <div class="chat-header">
+                        <h2 class="chat-title">技术交流聊天室</h2>
+                        <p class="chat-description">欢迎加入技术交流，分享您的想法和经验！</p>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages"></div>
+                    
+                    <div class="chat-input-area">
+                        <form id="chat-form" class="chat-form">
+                            <input type="text" id="message-input" class="chat-input" placeholder="输入消息..." required>
+                            <button type="submit" class="send-button">发送</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">NEO</span>
+                    <span class="logo-subtext">CODER</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#home">首页</a>
+                    <a href="index.html#blog">博客</a>
+                    <a href="index.html#projects">项目</a>
+                    <a href="index.html#about">关于</a>
+                    <a href="index.html#contact">联系</a>
+                    <a href="chatroom.html">聊天室</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fa fa-github"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-codepen"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neo Coder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        // 聊天室功能 - WebSocket 实现
+        document.addEventListener('DOMContentLoaded', function() {
+            // 元素
+            const userForm = document.getElementById('user-form');
+            const chatroom = document.getElementById('chatroom');
+            const usernameInput = document.getElementById('username');
+            const joinButton = document.getElementById('join-button');
+            const leaveButton = document.getElementById('leave-button');
+            const chatForm = document.getElementById('chat-form');
+            const messageInput = document.getElementById('message-input');
+            const chatMessages = document.getElementById('chat-messages');
+            const onlineUsers = document.getElementById('online-users');
+            const onlineCount = document.getElementById('online-count');
+            
+            // 本地状态
+            let currentUser = null;
+            let ws = null;
+            let onlineUserList = [];
+            let messages = [];
+            
+            // 连接到 WebSocket 服务器
+            function connectWebSocket(username) {
+                // 获取当前页面的主机名（用于局域网访问）
+                const hostname = window.location.hostname;
+                const wsUrl = `ws://${hostname}:8765`;
+                
+                ws = new WebSocket(wsUrl);
+                
+                ws.onopen = function() {
+                    console.log('Connected to chat server');
+                    // 发送用户名
+                    ws.send(username);
+                };
+                
+                ws.onmessage = function(event) {
+                    try {
+                        const message = JSON.parse(event.data);
+                        handleWebSocketMessage(message);
+                    } catch (e) {
+                        console.error('Error parsing message:', e);
+                    }
+                };
+                
+                ws.onclose = function() {
+                    console.log('Disconnected from chat server');
+                    // 显示重连提示
+                    addMessage('系统', '连接已断开，请刷新页面重连', 'system');
+                };
+                
+                ws.onerror = function(error) {
+                    console.error('WebSocket error:', error);
+                    addMessage('系统', '连接服务器失败，请检查服务器是否运行', 'system');
+                };
+            }
+            
+            // 处理 WebSocket 消息
+            function handleWebSocketMessage(message) {
+                switch (message.type) {
+                    case 'user-joined':
+                        // 显示用户加入消息
+                        addMessage('系统', message.message, 'system');
+                        break;
+                    
+                    case 'user-left':
+                        // 显示用户离开消息
+                        addMessage('系统', message.message, 'system');
+                        break;
+                    
+                    case 'user-list':
+                        // 更新在线用户列表
+                        onlineUserList = message.users.map(user => ({
+                            id: user,
+                            name: user,
+                            status: 'online'
+                        }));
+                        updateOnlineUsers();
+                        break;
+                    
+                    case 'chat':
+                        // 添加聊天消息
+                        if (message.username === currentUser) {
+                            addMessage(message.username, message.message, 'own');
+                        } else {
+                            addMessage(message.username, message.message, 'other');
+                        }
+                        break;
+                }
+            }
+            
+            // 加入聊天室
+            joinButton.addEventListener('click', function() {
+                const username = usernameInput.value.trim();
+                if (!username) {
+                    alert('请输入昵称');
+                    return;
+                }
+                
+                currentUser = username;
+                
+                // 连接到 WebSocket 服务器
+                connectWebSocket(username);
+                
+                // 隐藏登录表单，显示聊天室
+                userForm.style.display = 'none';
+                chatroom.style.display = 'grid';
+                
+                // 显示欢迎消息
+                addMessage('系统', '欢迎来到技术交流聊天室！', 'system');
+            });
+            
+            // 离开聊天室
+            leaveButton.addEventListener('click', function() {
+                if (ws) {
+                    ws.close();
+                }
+                
+                // 重置状态
+                currentUser = null;
+                ws = null;
+                onlineUserList = [];
+                messages = [];
+                
+                // 显示登录表单，隐藏聊天室
+                userForm.style.display = 'block';
+                chatroom.style.display = 'none';
+                usernameInput.value = '';
+            });
+            
+            // 发送消息
+            chatForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const message = messageInput.value.trim();
+                if (!message || !currentUser || !ws) return;
+                
+                // 发送消息到服务器
+                const chatMsg = {
+                    type: 'chat',
+                    message: message,
+                    timestamp: new Date().toLocaleTimeString()
+                };
+                
+                ws.send(JSON.stringify(chatMsg));
+                
+                // 清空输入框
+                messageInput.value = '';
+            });
+            
+            // 更新在线用户列表
+            function updateOnlineUsers() {
+                onlineCount.textContent = onlineUserList.length;
+                onlineUsers.innerHTML = '';
+                
+                onlineUserList.forEach(user => {
+                    const userElement = document.createElement('div');
+                    userElement.className = 'online-user';
+                    
+                    const avatar = document.createElement('div');
+                    avatar.className = 'user-avatar';
+                    avatar.textContent = user.name.charAt(0).toUpperCase();
+                    
+                    const userInfo = document.createElement('div');
+                    userInfo.className = 'user-info';
+                    
+                    const userName = document.createElement('div');
+                    userName.className = 'user-name';
+                    userName.textContent = user.name;
+                    
+                    const userStatus = document.createElement('div');
+                    userStatus.className = 'user-status';
+                    userStatus.textContent = user.status;
+                    
+                    const statusIndicator = document.createElement('div');
+                    statusIndicator.className = 'status-indicator';
+                    
+                    userInfo.appendChild(userName);
+                    userInfo.appendChild(userStatus);
+                    userElement.appendChild(avatar);
+                    userElement.appendChild(userInfo);
+                    userElement.appendChild(statusIndicator);
+                    
+                    onlineUsers.appendChild(userElement);
+                });
+            }
+            
+            // 添加消息
+            function addMessage(sender, content, type) {
+                const message = {
+                    id: messages.length + 1,
+                    sender: sender,
+                    content: content,
+                    type: type,
+                    time: new Date().toLocaleTimeString()
+                };
+                
+                messages.push(message);
+                displayMessages();
+                
+                // 滚动到底部
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // 显示消息
+            function displayMessages() {
+                chatMessages.innerHTML = '';
+                
+                messages.forEach(message => {
+                    const messageElement = document.createElement('div');
+                    messageElement.className = `message ${message.type}`;
+                    
+                    if (message.type !== 'system') {
+                        const messageHeader = document.createElement('div');
+                        messageHeader.className = 'message-header';
+                        
+                        const messageSender = document.createElement('span');
+                        messageSender.className = 'message-sender';
+                        messageSender.textContent = message.sender;
+                        
+                        const messageTime = document.createElement('span');
+                        messageTime.className = 'message-time';
+                        messageTime.textContent = message.time;
+                        
+                        messageHeader.appendChild(messageSender);
+                        messageHeader.appendChild(messageTime);
+                        messageElement.appendChild(messageHeader);
+                    }
+                    
+                    const messageContent = document.createElement('div');
+                    messageContent.className = 'message-content';
+                    messageContent.textContent = message.content;
+                    
+                    messageElement.appendChild(messageContent);
+                    chatMessages.appendChild(messageElement);
+                });
+                
+                // 滚动到底部
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // 监听页面关闭
+            window.addEventListener('beforeunload', function() {
+                if (ws) {
+                    ws.close();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

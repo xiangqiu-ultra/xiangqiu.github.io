@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>区块链应用 | Neo Coder</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 项目页面特定样式 */
+        .project-section {
+            padding: 120px 0 80px;
+        }
+        
+        .project-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(10, 10, 10, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.1);
+        }
+        
+        .project-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .project-title {
+            font-family: var(--font-primary);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-3), var(--accent-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        .project-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .tech-tag {
+            padding: 10px 20px;
+            background-color: rgba(102, 0, 255, 0.2);
+            color: var(--accent-5);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .tech-tag:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-5);
+            color: var(--bg-primary);
+            box-shadow: 0 10px 20px rgba(102, 0, 255, 0.4);
+        }
+        
+        .project-gallery {
+            margin-bottom: 60px;
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.2);
+            border-color: var(--accent-1);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .project-features {
+            margin-bottom: 60px;
+        }
+        
+        .section-subtitle {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent-1);
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.2);
+            border-color: var(--accent-2);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-2);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .project-code {
+            margin-bottom: 60px;
+        }
+        
+        .code-block {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-left: 4px solid var(--accent-1);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .code-block code {
+            color: var(--accent-1);
+        }
+        
+        .project-process {
+            margin-bottom: 60px;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-1), var(--accent-3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--bg-primary);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .project-links {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .link-button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 0 10px;
+            background-color: var(--accent-1);
+            color: var(--bg-primary);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .link-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 0, 0.5);
+        }
+        
+        .link-button.secondary {
+            background-color: transparent;
+            color: var(--accent-2);
+            border: 2px solid var(--accent-2);
+            box-shadow: 0 10px 20px rgba(255, 0, 255, 0.3);
+        }
+        
+        .link-button.secondary:hover {
+            background-color: var(--accent-2);
+            color: var(--bg-primary);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.5);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--accent-3);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--accent-1);
+            transform: translateX(-5px);
+        }
+        
+        .back-link::before {
+            content: '← ';
+            margin-right: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .project-section {
+                padding: 100px 0 60px;
+            }
+            
+            .project-content {
+                padding: 30px 20px;
+            }
+            
+            .process-step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .step-number {
+                margin-bottom: 15px;
+            }
+            
+            .link-button {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 数字雨背景 -->
+    <canvas id="matrix-bg"></canvas>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">NEO</span>
+                <span class="logo-subtext">CODER</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home" class="nav-link">首页</a>
+                <a href="index.html#blog" class="nav-link">博客</a>
+                <a href="index.html#projects" class="nav-link">项目</a>
+                <a href="index.html#about" class="nav-link">关于</a>
+                <a href="index.html#contact" class="nav-link">联系</a>
+            </div>
+            <button class="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- 项目区域 -->
+    <section class="project-section">
+        <div class="container">
+            <div class="project-content">
+                <div class="project-header">
+                    <h1 class="project-title">区块链应用</h1>
+                    <p class="project-description">基于以太坊的去中心化应用，实现智能合约和数字资产管理，为用户提供安全、透明的区块链解决方案。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Solidity</span>
+                        <span class="tech-tag">Web3.js</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Ethereum</span>
+                        <span class="tech-tag">Hardhat</span>
+                        <span class="tech-tag">IPFS</span>
+                    </div>
+                </div>
+                
+                <div class="project-gallery">
+                    <h2 class="section-subtitle">项目展示</h2>
+                    <div class="gallery-container">
+                        <div class="gallery-item">
+                            <img src="https://picsum.photos/id/1/800/600" alt="区块链钱包界面" class="gallery-image">
+                            <div class="gallery-caption">区块链钱包与资产管理界面</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://picsum.photos/id/2/800/600" alt="智能合约管理" class="gallery-image">
+                            <div class="gallery-caption">智能合约管理与交易监控</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://picsum.photos/id/3/600/800" alt="移动应用" class="gallery-image">
+                            <div class="gallery-caption">移动设备适配</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-features">
+                    <h2 class="section-subtitle">核心功能</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                            <h3 class="feature-title">智能合约</h3>
+                            <p class="feature-description">基于Solidity语言开发的智能合约，实现自动化交易、资产分发和业务逻辑执行，无需第三方干预。</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa fa-exchange"></i>
+                            </div>
+                            <h3 class="feature-title">数字资产管理</h3>
+                            <p class="feature-description">支持多种加密货币的管理、转账和交易，提供安全的数字资产存储解决方案。</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa fa-eye"></i>
+                            </div>
+                            <h3 class="feature-title">透明交易</h3>
+                            <p class="feature-description">所有交易记录都存储在区块链上，公开透明，可追溯，确保交易的真实性和不可篡改性。</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa fa-cloud"></i>
+                            </div>
+                            <h3 class="feature-title">分布式存储</h3>
+                            <p class="feature-description">集成IPFS分布式存储系统，确保数据的安全性和持久性，避免单点故障。</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa fa-mobile"></i>
+                            </div>
+                            <h3 class="feature-title">跨平台支持</h3>
+                            <p class="feature-description">响应式设计，支持桌面端、移动端和各种浏览器，提供一致的用户体验。</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fa fa-shield"></i>
+                            </div>
+                            <h3 class="feature-title">安全保障</h3>
+                            <p class="feature-description">多重签名、私钥加密、冷钱包支持等多种安全措施，确保用户资产安全。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-code">
+                    <h2 class="section-subtitle">核心代码示例</h2>
+                    <div class="code-block">
+                        <code>// 智能合约示例 - ERC20代币
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract NeoToken {
+    string public name = "Neo Token";
+    string public symbol = "NEO";
+    uint8 public decimals = 18;
+    uint256 public totalSupply;
+    
+    mapping(address => uint256) public balanceOf;
+    mapping(address => mapping(address => uint256)) public allowance;
+    
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+    
+    constructor(uint256 initialSupply) {
+        totalSupply = initialSupply * (10 ** uint256(decimals));
+        balanceOf[msg.sender] = totalSupply;
+    }
+    
+    function transfer(address to, uint256 value) external returns (bool) {
+        require(balanceOf[msg.sender] >= value, "余额不足");
+        
+        balanceOf[msg.sender] -= value;
+        balanceOf[to] += value;
+        
+        emit Transfer(msg.sender, to, value);
+        return true;
+    }
+    
+    function approve(address spender, uint256 value) external returns (bool) {
+        allowance[msg.sender][spender] = value;
+        emit Approval(msg.sender, spender, value);
+        return true;
+    }
+    
+    function transferFrom(address from, address to, uint256 value) external returns (bool) {
+        require(allowance[from][msg.sender] >= value, "授权不足");
+        require(balanceOf[from] >= value, "余额不足");
+        
+        allowance[from][msg.sender] -= value;
+        balanceOf[from] -= value;
+        balanceOf[to] += value;
+        
+        emit Transfer(from, to, value);
+        return true;
+    }
+}
+
+// 智能合约示例 - 众筹合约
+contract Crowdfunding {
+    address public owner;
+    uint256 public goal;
+    uint256 public raisedAmount;
+    uint256 public endTime;
+    bool public ended;
+    
+    mapping(address => uint256) public contributions;
+    
+    event ContributeEvent(address indexed contributor, uint256 value);
+    event WithdrawEvent(address indexed recipient, uint256 value);
+    event EndEvent(bool success);
+    
+    modifier onlyOwner() {
+        require(msg.sender == owner, "不是合约所有者");
+        _;
+    }
+    
+    modifier notEnded() {
+        require(!ended, "众筹已结束");
+        _;
+    }
+    
+    constructor(uint256 _goal, uint256 _durationInDays) {
+        owner = msg.sender;
+        goal = _goal;
+        endTime = block.timestamp + (_durationInDays * 1 days);
+    }
+    
+    function contribute() external payable notEnded {
+        require(block.timestamp < endTime, "众筹已过期");
+        require(msg.value > 0, "贡献金额必须大于0");
+        
+        contributions[msg.sender] += msg.value;
+        raisedAmount += msg.value;
+        
+        emit ContributeEvent(msg.sender, msg.value);
+    }
+    
+    function endCrowdfunding() external onlyOwner notEnded {
+        ended = true;
+        emit EndEvent(raisedAmount >= goal);
+    }
+    
+    function withdraw() external onlyOwner {
+        require(ended, "众筹尚未结束");
+        require(raisedAmount >= goal, "众筹未达到目标");
+        
+        uint256 amount = address(this).balance;
+        (bool success, ) = owner.call{value: amount}("");
+        require(success, "转账失败");
+        
+        emit WithdrawEvent(owner, amount);
+    }
+    
+    function getRefund() external {
+        require(ended, "众筹尚未结束");
+        require(raisedAmount < goal, "众筹已达到目标");
+        require(contributions[msg.sender] > 0, "没有贡献记录");
+        
+        uint256 amount = contributions[msg.sender];
+        contributions[msg.sender] = 0;
+        
+        (bool success, ) = msg.sender.call{value: amount}("");
+        require(success, "退款失败");
+        
+        emit WithdrawEvent(msg.sender, amount);
+    }
+}
+</code>
+                    </div>
+                    
+                    <div class="code-block">
+                        <code>// 前端Web3集成
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
+import NeoToken from './contracts/NeoToken.json';
+import Crowdfunding from './contracts/Crowdfunding.json';
+
+const BlockchainApp = () => {
+    const [web3, setWeb3] = useState(null);
+    const [account, setAccount] = useState(null);
+    const [neoToken, setNeoToken] = useState(null);
+    const [crowdfunding, setCrowdfunding] = useState(null);
+    const [balance, setBalance] = useState('0');
+    const [contribution, setContribution] = useState('0');
+    const [raisedAmount, setRaisedAmount] = useState('0');
+    const [goal, setGoal] = useState('0');
+    const [isConnected, setIsConnected] = useState(false);
+    
+    // 初始化Web3
+    useEffect(() => {
+        const initWeb3 = async () => {
+            try {
+                // 检查是否安装了MetaMask
+                if (window.ethereum) {
+                    const web3Instance = new Web3(window.ethereum);
+                    setWeb3(web3Instance);
+                    
+                    // 请求账户访问
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    setAccount(accounts[0]);
+                    setIsConnected(true);
+                    
+                    // 监听账户变化
+                    window.ethereum.on('accountsChanged', (accounts) => {
+                        setAccount(accounts[0]);
+                    });
+                    
+                    // 初始化合约
+                    await initContracts(web3Instance, accounts[0]);
+                } else {
+                    console.error('请安装MetaMask钱包');
+                }
+            } catch (error) {
+                console.error('初始化Web3失败:', error);
+            }
+        };
+        
+        initWeb3();
+    }, []);
+    
+    // 初始化合约
+    const initContracts = async (web3Instance, account) => {
+        try {
+            // 获取网络ID
+            const networkId = await web3Instance.eth.net.getId();
+            
+            // 初始化NeoToken合约
+            const neoTokenNetwork = NeoToken.networks[networkId];
+            if (neoTokenNetwork) {
+                const tokenInstance = new web3Instance.eth.Contract(
+                    NeoToken.abi,
+                    neoTokenNetwork.address
+                );
+                setNeoToken(tokenInstance);
+                
+                // 获取代币余额
+                const tokenBalance = await tokenInstance.methods.balanceOf(account).call();
+                setBalance(web3Instance.utils.fromWei(tokenBalance, 'ether'));
+            }
+            
+            // 初始化Crowdfunding合约
+            const crowdfundingNetwork = Crowdfunding.networks[networkId];
+            if (crowdfundingNetwork) {
+                const crowdfundingInstance = new web3Instance.eth.Contract(
+                    Crowdfunding.abi,
+                    crowdfundingNetwork.address
+                );
+                setCrowdfunding(crowdfundingInstance);
+                
+                // 获取众筹信息
+                const goalAmount = await crowdfundingInstance.methods.goal().call();
+                const raised = await crowdfundingInstance.methods.raisedAmount().call();
+                setGoal(web3Instance.utils.fromWei(goalAmount, 'ether'));
+                setRaisedAmount(web3Instance.utils.fromWei(raised, 'ether'));
+            }
+        } catch (error) {
+            console.error('初始化合约失败:', error);
+        }
+    };
+    
+    // 贡献资金
+    const handleContribute = async () => {
+        if (!crowdfunding || !web3 || !account) return;
+        
+        try {
+            const amount = web3.utils.toWei(contribution, 'ether');
+            await crowdfunding.methods.contribute().send({
+                from: account,
+                value: amount
+            });
+            
+            // 更新众筹信息
+            const raised = await crowdfunding.methods.raisedAmount().call();
+            setRaisedAmount(web3.utils.fromWei(raised, 'ether'));
+            setContribution('0');
+            
+            alert('贡献成功！');
+        } catch (error) {
+            console.error('贡献失败:', error);
+            alert('贡献失败，请检查MetaMask钱包');
+        }
+    };
+    
+    // 领取退款
+    const handleRefund = async () => {
+        if (!crowdfunding || !web3 || !account) return;
+        
+        try {
+            await crowdfunding.methods.getRefund().send({
+                from: account
+            });
+            alert('退款成功！');
+        } catch (error) {
+            console.error('退款失败:', error);
+            alert('退款失败，请检查众筹状态');
+        }
+    };
+    
+    // 连接钱包
+    const connectWallet = async () => {
+        try {
+            if (window.ethereum) {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                setAccount(accounts[0]);
+                setIsConnected(true);
+                
+                // 初始化合约
+                const web3Instance = new Web3(window.ethereum);
+                setWeb3(web3Instance);
+                await initContracts(web3Instance, accounts[0]);
+            }
+        } catch (error) {
+            console.error('连接钱包失败:', error);
+        }
+    };
+    
+    return (
+        <div className="blockchain-app">
+            <div className="app-header">
+                <h1>区块链应用</h1>
+                <div className="wallet-status">
+                    {isConnected ? (
+                        <div className="connected-account">
+                            <span>已连接:</span>
+                            <span className="account-address">{account.substring(0, 6)}...{account.substring(38)}</span>
+                        </div>
+                    ) : (
+                        <button className="connect-button" onClick={connectWallet}>
+                            连接MetaMask钱包
+                        </button>
+                    )}
+                </div>
+            </div>
+            
+            <div className="app-content">
+                {/* 代币余额 */}
+                <div className="token-balance">
+                    <h2>Neo Token余额</h2>
+                    <div className="balance-display">
+                        {balance} NEO
+                    </div>
+                </div>
+                
+                {/* 众筹模块 */}
+                <div className="crowdfunding-module">
+                    <h2>智能合约众筹</h2>
+                    <div className="crowdfunding-info">
+                        <div className="info-item">
+                            <span>目标金额:</span>
+                            <span>{goal} ETH</span>
+                        </div>
+                        <div className="info-item">
+                            <span>已筹金额:</span>
+                            <span>{raisedAmount} ETH</span>
+                        </div>
+                        <div className="progress-bar">
+                            <div 
+                                className="progress-fill"
+                                style={{ width: `${(parseFloat(raisedAmount) / parseFloat(goal) * 100) || 0}%` }}
+                            ></div>
+                        </div>
+                    </div>
+                    
+                    <div className="contribute-form">
+                        <input
+                            type="number"
+                            value={contribution}
+                            onChange={(e) => setContribution(e.target.value)}
+                            placeholder="输入贡献金额 (ETH)"
+                            step="0.01"
+                        />
+                        <button onClick={handleContribute} disabled={!isConnected}>
+                            贡献资金
+                        </button>
+                    </div>
+                    
+                    <button className="refund-button" onClick={handleRefund} disabled={!isConnected}>
+                        领取退款 (如果众筹失败)
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default BlockchainApp;
+
+// 样式
+const styles = {
+    blockchainApp: {
+        minHeight: '100vh',
+        backgroundColor: 'rgba(10, 10, 10, 0.8)',
+        color: 'var(--text-primary)',
+        padding: '20px'
+    },
+    appHeader: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '40px',
+        paddingBottom: '20px',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+    },
+    walletStatus: {
+        display: 'flex',
+        alignItems: 'center'
+    },
+    connectedAccount: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px'
+    },
+    accountAddress: {
+        color: 'var(--accent-1)',
+        fontFamily: 'monospace'
+    },
+    connectButton: {
+        padding: '10px 20px',
+        backgroundColor: 'var(--accent-1)',
+        color: 'var(--bg-primary)',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        fontWeight: '600'
+    },
+    appContent: {
+        maxWidth: '800px',
+        margin: '0 auto'
+    },
+    tokenBalance: {
+        background: 'rgba(255, 255, 255, 0.05)',
+        padding: '30px',
+        borderRadius: '15px',
+        marginBottom: '30px',
+        textAlign: 'center'
+    },
+    balanceDisplay: {
+        fontSize: '2rem',
+        color: 'var(--accent-1)',
+        marginTop: '10px'
+    },
+    crowdfundingModule: {
+        background: 'rgba(255, 255, 255, 0.05)',
+        padding: '30px',
+        borderRadius: '15px'
+    },
+    crowdfundingInfo: {
+        marginBottom: '30px'
+    },
+    infoItem: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginBottom: '10px'
+    },
+    progressBar: {
+        height: '10px',
+        background: 'rgba(255, 255, 255, 0.1)',
+        borderRadius: '5px',
+        overflow: 'hidden',
+        marginTop: '20px'
+    },
+    progressFill: {
+        height: '100%',
+        background: 'linear-gradient(90deg, var(--accent-1), var(--accent-3))',
+        transition: 'width 0.3s ease'
+    },
+    contributeForm: {
+        display: 'flex',
+        gap: '10px',
+        marginBottom: '20px'
+    },
+    refundButton: {
+        padding: '10px 20px',
+        backgroundColor: 'transparent',
+        color: 'var(--accent-2)',
+        border: '2px solid var(--accent-2)',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        fontWeight: '600'
+    }
+};
+</code>
+                    </div>
+                </div>
+                
+                <div class="project-process">
+                    <h2 class="section-subtitle">开发流程</h2>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3 class="step-title">需求分析与架构设计</h3>
+                                <p class="step-description">分析区块链应用的核心需求，设计系统架构，确定智能合约功能和前端交互流程。</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3 class="step-title">智能合约开发</h3>
+                                <p class="step-description">使用Solidity语言开发智能合约，实现代币发行、众筹、资产交易等核心功能，编写详细的测试用例。</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3 class="step-title">合约部署与测试</h3>
+                                <p class="step-description">使用Hardhat或Truffle部署智能合约到以太坊测试网络，进行功能测试和安全审计，确保合约安全性。</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3 class="step-title">前端界面开发</h3>
+                                <p class="step-description">使用React构建响应式前端界面，集成Web3.js与智能合约交互，实现钱包连接、交易签名等功能。</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3 class="step-title">集成与部署</h3>
+                                <p class="step-description">集成IPFS分布式存储，部署前端应用到生产环境，进行端到端测试，确保系统稳定性和安全性。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-links">
+                    <h2 class="section-subtitle">项目链接</h2>
+                    <a href="#" class="link-button">查看演示</a>
+                    <a href="#" class="link-button secondary">GitHub仓库</a>
+                </div>
+                
+                <a href="index.html#projects" class="back-link">返回项目列表</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">NEO</span>
+                    <span class="logo-subtext">CODER</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#home">首页</a>
+                    <a href="index.html#blog">博客</a>
+                    <a href="index.html#projects">项目</a>
+                    <a href="index.html#about">关于</a>
+                    <a href="index.html#contact">联系</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fa fa-github"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-codepen"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neo Coder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向 球  | 前卫程序员博客</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet preload" as="font" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){"use strict";function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){"use strict";function _typeof(obj){"@babel/helpers - typeof"===_typeof&&(_typeof=function(obj){return typeof obj;}),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(obj){return typeof obj;}:function(obj){return obj&&"function"==typeof Symbol&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);Object.defineProperty(Constructor,"prototype",{writable:false});return Constructor;}function _toConsumableArray(arr){return _arrayWithoutHoles(arr)||_iterableToArray(arr)||_unsupportedIterableToArray(arr)||_nonIterableSpread();}function _nonIterableSpread(){throw new TypeError("Invalid attempt to spread non-iterable instance.");}function _unsupportedIterableToArray(o,minLen){if(!o){if(typeof o==="string")return _arrayLikeToArray(o,minLen);var n=Object.prototype.toString.call(o).slice(8,-1);throw new TypeError("Invalid attempt to spread non-iterable instance.");}}function _iterableToArray(iter){if("undefined"!=typeof Symbol&&null!=iter[Symbol.iterator]||null!=iter["@@iterator"])return Array.from(iter);}function _arrayWithoutHoles(arr){if(Array.isArray(arr))return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr,len){if(null==arr)return;var i=arr.length;if(i)return "string"==typeof arr?Array.from(arr):_arrayLikeToArray(arr,i);if(Object.prototype.toString.call(arr)==="[object ArrayLike]"){for(var o=new Array(len||arr.length),n=0;n<arr.length;n++)o[n]=arr[n];return o;}}function _slicedToArray(arr, i){return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest(){throw new TypeError("Invalid attempt to destructure non-iterable instance.");}function _unsupportedIterableToArray(o, minLen){if(!o){if(typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);throw new TypeError("Invalid attempt to destructure non-iterable instance.");}}function _iterableToArrayLimit(arr, i){var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];if (_i == null) return;var _arr = [];var _n = true;var _d = false;var _s;try{for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true){_arr.push(_s.value);if (i && _arr.length === i) break;}}catch (err){_d = true;throw err;}finally{try{if (!_n && _i["return"] != null) _i["return"]();}finally{if (_d) throw err;}}return _arr;}function _arrayWithHoles(arr){if (Array.isArray(arr)) return arr;}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass) _setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}function _createSuper(Derived){var hasNativeReflectConstruct=_isNativeReflectConstruct();return function _createSuperInternal(){var Super=_getPrototypeOf(Derived),result;if(hasNativeReflectConstruct){var NewTarget=_getPrototypeOf(this).constructor;result=Reflect.construct(Super,arguments,NewTarget);}else{result=Super.apply(this,arguments);}return _possibleConstructorReturn(this,result);};}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}else if(call!==void 0){throw new TypeError("Derived constructors may only return object or undefined");}return _assertThisInitialized(self);}function _isNativeReflectConstruct(){if(typeof Reflect==="undefined"||!Reflect.construct)return false;if(Reflect.construct.sham)return false;if(typeof Proxy==="function")return true;try{Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],function(){}));return true;}catch(e){return false;}}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}var s=require("../utils");var t=require("../constants");var n=require("../defaults"),o=require("../templates"),a=require("../store"),i=require("../api"),e=require("../validations"),r=require("../helpers");var c=(0,s.createClass)("EmailJS",function(){function e(e){var t=this;(0,_classCallCheck)(this,e);var n=(0,_createSuper(e)).call(this);(0,_assertThisInitialized)(n).publicKey=e;return n}return(0,_createClass)(e,[{key:"init",value:function e(){var t=this;return new Promise(function(n,o){t.publicKey&&(0,r.isValidPublicKey)(t.publicKey)?(t.store=new a,t.api=new i(t.publicKey,t.store),t.api.init().then(function(){return n()}).catch(function(e){return o(new Error(e))})):o(new Error("The public key is required"))})}},{key:"send",value:function e(n,o,i){var r=this;return new Promise(function(c,u){if(!r.store){return u(new Error("The library is not initialized. Use init() method first."),t.ErrorCode.NOT_INITIALIZED);}var s={serviceID:n,templateID:o,templateParams:i,userID:r.publicKey,accessToken:r.store.get(t.KEYS.ACCESS_TOKEN)};if(!(0,e.validateRequiredParams)(s)){return u(new Error("The required params are not provided"),t.ErrorCode.MISSING_REQUIRED_PARAMS);}if(!(0,r.isValidEmail)(i.user_email)){return u(new Error("The user email is required and must be a valid email address"),t.ErrorCode.INVALID_EMAIL);}r.api.send(s).then(function(e){return c(e)}).catch(function(e){return u(new Error(e),t.ErrorCode.API_ERROR)})})}},{key:"sendForm",value:function e(e,n,o){var i=this,r=document.getElementById(e);return new Promise(function(e,c){if(!r){return c(new Error("The form with the passed ID wasn't found"),t.ErrorCode.FORM_NOT_FOUND);}if(!i.store){return c(new Error("The library is not initialized. Use init() method first."),t.ErrorCode.NOT_INITIALIZED);}i.api.sendForm({serviceID:n,templateID:o,form:r,userID:i.publicKey,accessToken:i.store.get(t.KEYS.ACCESS_TOKEN)}).then(function(t){return e(t)}).catch(function(t){return c(new Error(t),t.ErrorCode.API_ERROR)})})}},{key:"render",value:function e(t){var n=this;return new Promise(function(o,a){if(!n.store){return a(new Error("The library is not initialized. Use init() method first."),t.ErrorCode.NOT_INITIALIZED);}if(!t.templateID){return a(new Error("The template ID is required"),t.ErrorCode.MISSING_REQUIRED_PARAMS);}var i={templateID:t.templateID,templateParams:t.templateParams||{},userID:n.publicKey,accessToken:n.store.get(t.KEYS.ACCESS_TOKEN)};n.api.render(i).then(function(e){return o(e)}).catch(function(e){return a(new Error(e),t.ErrorCode.API_ERROR)})})}},{key:"getTemplates",value:function e(){var t=this;return new Promise(function(n,o){if(!t.store){return o(new Error("The library is not initialized. Use init() method first."),t.ErrorCode.NOT_INITIALIZED);}t.api.getTemplates({userID:t.publicKey,accessToken:t.store.get(t.KEYS.ACCESS_TOKEN)}).then(function(e){return n(e)}).catch(function(e){return o(new Error(e),t.ErrorCode.API_ERROR)})})}},{key:"getServices",value:function e(){var t=this;return new Promise(function(n,o){if(!t.store){return o(new Error("The library is not initialized. Use init() method first."),t.ErrorCode.NOT_INITIALIZED);}t.api.getServices({userID:t.publicKey,accessToken:t.store.get(t.KEYS.ACCESS_TOKEN)}).then(function(e){return n(e)}).catch(function(e){return o(new Error(e),t.ErrorCode.API_ERROR)})})}},{key:"setLanguage",value:function e(t){var n=this;return new Promise(function(o,a){if(!n.store){return a(new Error("The library is not initialized. Use init() method first."),t.ErrorCode.NOT_INITIALIZED);}var i=new o;t.setLanguage(t).then(function(e){return o(e)}).catch(function(e){return a(new Error(e),t.ErrorCode.API_ERROR)})})}},{key:"addEventListener",value:function e(t,n){var o=this;if(!o.store){throw new Error("The library is not initialized. Use init() method first.");}o.store.addEvent(t,n)}},{key:"removeEventListener",value:function e(t){var n=this;if(!n.store){throw new Error("The library is not initialized. Use init() method first.");}n.store.removeEvent(t)}},{key:"destroy",value:function e(){var t=this;return new Promise(function(n,o){if(!t.store){return o(new Error("The library is not initialized. Use init() method first."),t.ErrorCode.NOT_INITIALIZED);}t.store.clear();t.api.destroy();t.store=null;t.api=null;n()})}}]),e;}());module.exports=c;},{"../api":2,"../constants":3,"../defaults":4,"../helpers":5,"../store":6,"../templates":7,"../utils":8,"../validations":9}],2:[function(require,module,exports){"use strict";function _typeof(obj){"@babel/helpers - typeof"===_typeof&&(_typeof=function(obj){return typeof obj;}),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(obj){return typeof obj;}:function(obj){return obj&&"function"==typeof Symbol&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);Object.defineProperty(Constructor,"prototype",{writable:false});return Constructor;}var s=require("../utils"),t=require("../constants"),n=require("../defaults"),o=require("../templates"),a=require("../helpers");var i=(0,s.createClass)("API",function(){function e(e,o){(0,_classCallCheck)(this,e);this.publicKey=e;this.store=o;this.apiUrl=n.API_URL;this.version=n.VERSION;this.requestTimeout=n.REQUEST_TIMEOUT;this.pendingRequests=new Map;this.abortController=new AbortController;this.initPromise=null;this.isInitialized=false}return(0,_createClass)(e,[{key:"init",value:function e(){var t=this;return this.initPromise||(this.initPromise=new Promise(function(e,n){if(t.isInitialized){return e();}t.getResource("initialize").then(function(o){t.isInitialized=true;t.store.set(t.store.KEYS.ACCESS_TOKEN,o.accessToken);t.store.set(t.store.KEYS.REFRESH_TOKEN,o.refreshToken);t.store.set(t.store.KEYS.EXPIRATION_TIME,o.expirationTime);e()}).catch(function(e){t.isInitialized=false;n(e)})}))}},{key:"send",value:function e(t){var n=this;return new Promise(function(o,a){n.init().then(function(){return n.getResource("send",t)}).then(function(e){o(e)}).catch(function(e){a(e)})})}},{key:"sendForm",value:function e(t){var n=this;return new Promise(function(o,a){n.init().then(function(){return n.getResource("send-form",t)}).then(function(e){o(e)}).catch(function(e){a(e)})})}},{key:"render",value:function e(t){var n=this;return new Promise(function(o,a){n.init().then(function(){return n.getResource("render",t)}).then(function(e){o(e)}).catch(function(e){a(e)})})}},{key:"getTemplates",value:function e(t){var n=this;return new Promise(function(o,a){n.init().then(function(){return n.getResource("templates",t)}).then(function(e){o(e)}).catch(function(e){a(e)})})}},{key:"getServices",value:function e(t){var n=this;return new Promise(function(o,a){n.init().then(function(){return n.getResource("services",t)}).then(function(e){o(e)}).catch(function(e){a(e)})})}},{key:"getResource",value:function e(t,n){var o=this;return new Promise(function(a,i){if(!o.abortController){o.abortController=new AbortController;}var s={method:"POST",headers:{"Content-Type":"application/json","X-Requested-With":"XMLHttpRequest"},body:JSON.stringify(n),signal:o.abortController.signal},c=o.apiUrl+"/"+t,u=new URL(c);u.searchParams.append("v",o.version);u.searchParams.append("user_id",o.publicKey);var r=fetch(u,s);o.pendingRequests.set(t,r);r.then(function(t){if(!t.ok){throw new Error("Bad response from server");}return t.json();}).then(function(t){if(t.success){a(t.response);}else{throw new Error(t.error);}}).catch(function(e){if(e.name!=="AbortError"){i(e);}}).finally(function(){o.pendingRequests.delete(t);})})}},{key:"destroy",value:function e(){this.abortController.abort();this.pendingRequests.clear();this.abortController=null;this.initPromise=null;this.isInitialized=false}}]),e;}());module.exports=i;},{"../constants":3,"../defaults":4,"../helpers":5,"../templates":7,"../utils":8}],3:[function(require,module,exports){"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.KEYS=exports.ErrorCode=void 0;var ErrorCode={NOT_INITIALIZED:"NOT_INITIALIZED",MISSING_REQUIRED_PARAMS:"MISSING_REQUIRED_PARAMS",INVALID_EMAIL:"INVALID_EMAIL",FORM_NOT_FOUND:"FORM_NOT_FOUND",API_ERROR:"API_ERROR"};exports.ErrorCode=ErrorCode;var KEYS={ACCESS_TOKEN:"accessToken",REFRESH_TOKEN:"refreshToken",EXPIRATION_TIME:"expirationTime",EVENTS:"events"};exports.KEYS=KEYS;},{}],4:[function(require,module,exports){"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.VERSION=exports.REQUEST_TIMEOUT=exports.API_URL=void 0;var API_URL="https://api.emailjs.com/api/v1.0";exports.API_URL=API_URL;var REQUEST_TIMEOUT=30000;exports.REQUEST_TIMEOUT=REQUEST_TIMEOUT;var VERSION="4.3.3";exports.VERSION=VERSION;},{}],5:[function(require,module,exports){"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.isValidPublicKey=exports.isValidEmail=void 0;var isValidEmail=function e(t){return/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(t);};exports.isValidEmail=isValidEmail;var isValidPublicKey=function e(t){return/^[\w]{32}$/.test(t);};exports.isValidPublicKey=isValidPublicKey;},{}],6:[function(require,module,exports){"use strict";function _typeof(obj){"@babel/helpers - typeof"===_typeof&&(_typeof=function(obj){return typeof obj;}),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(obj){return typeof obj;}:function(obj){return obj&&"function"==typeof Symbol&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);Object.defineProperty(Constructor,"prototype",{writable:false});return Constructor;}var s=require("../utils"),t=require("../constants");var n=(0,s.createClass)("Store",function(){function e(){(0,_classCallCheck)(this,e);this.KEYS=t.KEYS;this.storage=this.getStorage();this.events=new Map}return(0,_createClass)(e,[{key:"getStorage",value:function e(){if(typeof localStorage!=="undefined"){try{localStorage.setItem("__emailjs_test","test");localStorage.removeItem("__emailjs_test");return localStorage}catch(e){return null}}return null}},{key:"get",value:function e(t){if(this.storage){try{var n=this.storage.getItem(t);return n?JSON.parse(n):null}catch(e){return null}}return null}},{key:"set",value:function e(t,n){if(this.storage){try{this.storage.setItem(t,JSON.stringify(n));return true}catch(e){return false}}return false}},{key:"remove",value:function e(t){if(this.storage){try{this.storage.removeItem(t);return true}catch(e){return false}}return false}},{key:"clear",value:function e(){if(this.storage){try{this.storage.clear();return true}catch(e){return false}}return false}},{key:"addEvent",value:function e(t,n){if("function"===typeof n){var o=this.events.get(t);this.events.set(t,o?[].concat(_toConsumableArray(o),[n]):[n])}}},{key:"removeEvent",value:function e(t){this.events.delete(t)}},{key:"emit",value:function e(t,n){var o=this;this.events.get(t)&&this.events.get(t).forEach(function(e){e(n)})}}]),e;}());module.exports=n;},{"../constants":3,"../utils":8}],7:[function(require,module,exports){"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.default=void 0;var _default={};exports.default=_default;},{}],8:[function(require,module,exports){"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.createClass=void 0;var createClass=function(){function e(e,n){for(var o=0;o<n.length;o++){var a=n[o];a.enumerable=a.enumerable||false;a.configurable=true;if("value"in a)a.writable=true;Object.defineProperty(e,a.key,a)}}return function(n,o,a){if(o)e(n.prototype,o);if(a)e(n,a);return n}}();exports.createClass=createClass;},{}],9:[function(require,module,exports){"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.validateRequiredParams=void 0;var validateRequiredParams=function e(t){return!!t.serviceID&&!!t.templateID&&!!t.userID;};exports.validateRequiredParams=validateRequiredParams;},{}]},{},[1]);
+    </script>
+    <script type="text/javascript">
+        // 初始化EmailJS
+        emailjs.init('service_393073568qq');
+    </script>
+</head>
+<body>
+    <!-- 数字雨背景 -->
+    <canvas id="matrix-bg"></canvas>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-text">xiang</span>
+                <span class="logo-subtext">qiu</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">首页</a>
+                <a href="#blog" class="nav-link">博客</a>
+                <a href="#projects" class="nav-link">项目</a>
+                <a href="#about" class="nav-link">关于</a>
+                <a href="#contact" class="nav-link">联系</a>
+                <a href="chatroom.html" class="nav-link">聊天室</a>
+            </div>
+            <button class="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- 英雄区域 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-avatar">
+                <img src="https://ui-avatars.com/api/?name=xiang+qiu&background=00ff00&color=000000&size=200" alt="Neo Coder" class="avatar-img">
+            </div>
+            <h1 class="hero-title">
+                <span class="title-text">HELLO, I'M</span>
+                <span class="title-name">xiang qiu</span>
+            </h1>
+            <p class="hero-subtitle">Full Stack Developer & Tech Enthusiast</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">查看项目</a>
+                <a href="#blog" class="btn btn-secondary">阅读博客</a>
+            </div>
+            <div class="hero-social">
+                <a href="#" class="social-link"><i class="fa fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fa fa-linkedin"></i></a>
+                <a href="#" class="social-link"><i class="fa fa-codepen"></i></a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 博客区域 -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <h2 class="section-title">最新博客</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-card-content">
+                        <span class="blog-category">前端开发</span>
+                        <h3 class="blog-title">现代CSS动画技巧</h3>
+                        <p class="blog-excerpt">探索最新的CSS动画技术，创建流畅的用户体验和视觉效果。</p>
+                        <a href="blog-css-animations.html" class="blog-readmore">阅读更多</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-content">
+                        <span class="blog-category">后端开发</span>
+                        <h3 class="blog-title">Node.js性能优化</h3>
+                        <p class="blog-excerpt">深入了解Node.js的性能优化策略，提升应用响应速度。</p>
+                        <a href="blog-nodejs-performance.html" class="blog-readmore">阅读更多</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-content">
+                        <span class="blog-category">人工智能</span>
+                        <h3 class="blog-title">AI在开发中的应用</h3>
+                        <p class="blog-excerpt">探讨人工智能如何改变软件开发流程和未来趋势。</p>
+                        <a href="blog-ai-in-development.html" class="blog-readmore">阅读更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 项目区域 -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2 class="section-title">精选项目</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3 class="project-title">智能聊天机器人</h3>
+                        <p class="project-description">基于AI的智能聊天系统，支持多轮对话和自然语言处理。</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">TensorFlow</span>
+                        </div>
+                        <a href="project-chatbot.html" class="project-link">查看详情</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3 class="project-title">实时协作工具</h3>
+                        <p class="project-description">支持多人实时协作的在线编辑工具，基于WebSocket技术。</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <a href="project-collaboration-tool.html" class="project-link">查看详情</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3 class="project-title">区块链应用</h3>
+                        <p class="project-description">基于以太坊的去中心化应用，实现智能合约和数字资产管理。</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Solidity</span>
+                            <span class="tech-tag">Web3.js</span>
+                            <span class="tech-tag">React</span>
+                        </div>
+                        <a href="project-blockchain-app.html" class="project-link">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 关于区域 -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>我是一名充满激情的全栈开发者，专注于创建创新的Web应用和技术解决方案。拥有5年以上的开发经验，精通前端和后端技术栈。</p>
+                    <p>我热爱探索新技术，不断学习和成长。在我的博客中，我分享开发经验、技术见解和行业趋势，希望能够帮助更多的开发者。</p>
+                    <div class="about-skills">
+                        <h3>技术栈</h3>
+                        <div class="skills-grid">
+                            <span class="skill-item">JavaScript</span>
+                            <span class="skill-item">React</span>
+                            <span class="skill-item">Node.js</span>
+                            <span class="skill-item">Python</span>
+                            <span class="skill-item">Docker</span>
+                            <span class="skill-item">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系区域 -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-content">
+                <form class="contact-form" action="mailto:393073568@qq.com" method="POST" enctype="text/plain">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="留言" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">发送留言</button>
+                </form>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fa fa-envelope"></i>
+                        <span>393073568@qq.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa fa-phone"></i>
+                        <span>+86 18320882385</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa fa-map-marker"></i>
+                        <span>深圳市宝安区</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">NEO</span>
+                    <span class="logo-subtext">CODER</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">首页</a>
+                    <a href="#blog">博客</a>
+                    <a href="#projects">项目</a>
+                    <a href="#about">关于</a>
+                    <a href="#contact">联系</a>
+                    <a href="chatroom.html">聊天室</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fa fa-github"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-codepen"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neo Coder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

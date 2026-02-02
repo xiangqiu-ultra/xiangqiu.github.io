@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现代CSS动画技巧 | Neo Coder</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 文章页面特定样式 */
+        .article-section {
+            padding: 120px 0 80px;
+        }
+        
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(10, 10, 10, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.1);
+        }
+        
+        .article-header {
+            margin-bottom: 40px;
+        }
+        
+        .article-category {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--accent-4);
+            color: var(--bg-primary);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        
+        .article-title {
+            font-family: var(--font-primary);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-3), var(--accent-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .article-body {
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        
+        .article-body h2 {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            color: var(--accent-1);
+        }
+        
+        .article-body h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: var(--accent-3);
+        }
+        
+        .article-body p {
+            margin-bottom: 20px;
+        }
+        
+        .article-body ul,
+        .article-body ol {
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+        
+        .article-body li {
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-left: 4px solid var(--accent-1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .code-block code {
+            color: var(--accent-1);
+        }
+        
+        .animation-demo {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .demo-element {
+            width: 100px;
+            height: 100px;
+            background-color: var(--accent-2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-primary);
+            font-weight: 700;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .demo-element.animation-2 {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .demo-element.animation-3 {
+            animation: slideInUp 1s ease-out infinite alternate;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--accent-3);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--accent-1);
+            transform: translateX(-5px);
+        }
+        
+        .back-link::before {
+            content: '← ';
+            margin-right: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .article-section {
+                padding: 100px 0 60px;
+            }
+            
+            .article-content {
+                padding: 30px 20px;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 数字雨背景 -->
+    <canvas id="matrix-bg"></canvas>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">NEO</span>
+                <span class="logo-subtext">CODER</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home" class="nav-link">首页</a>
+                <a href="index.html#blog" class="nav-link">博客</a>
+                <a href="index.html#projects" class="nav-link">项目</a>
+                <a href="index.html#about" class="nav-link">关于</a>
+                <a href="index.html#contact" class="nav-link">联系</a>
+            </div>
+            <button class="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- 文章区域 -->
+    <section class="article-section">
+        <div class="container">
+            <div class="article-content">
+                <div class="article-header">
+                    <span class="article-category">前端开发</span>
+                    <h1 class="article-title">现代CSS动画技巧</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <i class="fa fa-calendar"></i>
+                            <span>2026-02-01</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <i class="fa fa-user"></i>
+                            <span>Neo Coder</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <i class="fa fa-tags"></i>
+                            <span>CSS, 动画, 前端</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-body">
+                    <p>CSS动画已经成为现代前端开发中不可或缺的一部分，它不仅可以增强用户体验，还能为网站增添独特的视觉魅力。在本文中，我们将探索最新的CSS动画技术，从基础概念到高级技巧，帮助你创建流畅、高效的动画效果。</p>
+                    
+                    <h2>1. CSS动画基础</h2>
+                    <p>CSS动画主要通过<code>@keyframes</code>规则和<code>animation</code>属性来实现。让我们从一个简单的示例开始：</p>
+                    
+                    <div class="code-block">
+                        <code>/* 定义动画 */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 应用动画 */
+.animated-element {
+    animation: pulse 2s ease-in-out infinite;
+}</code>
+                    </div>
+                    
+                    <div class="animation-demo">
+                        <div class="demo-element">动画示例</div>
+                        <p>这是一个简单的脉冲动画效果</p>
+                    </div>
+                    
+                    <h2>2. 高级动画技巧</h2>
+                    
+                    <h3>2.1 贝塞尔曲线缓动</h3>
+                    <p>使用<code>cubic-bezier</code>函数可以创建自定义的缓动效果，使动画更加自然：</p>
+                    
+                    <div class="code-block">
+                        <code>/* 自定义缓动效果 */
+.ease-in-out-custom {
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}</code>
+                    </div>
+                    
+                    <h3>2.2 多重动画</h3>
+                    <p>可以同时应用多个动画，创造复杂的效果：</p>
+                    
+                    <div class="code-block">
+                        <code>/* 多重动画 */
+.complex-animation {
+    animation: 
+        pulse 2s ease-in-out infinite,
+        float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}</code>
+                    </div>
+                    
+                    <div class="animation-demo">
+                        <div class="demo-element animation-2">双重动画</div>
+                        <p>同时应用脉冲和浮动动画</p>
+                    </div>
+                    
+                    <h3>2.3 视差滚动效果</h3>
+                    <p>利用CSS <code>transform</code>和滚动事件，可以创建视差滚动效果：</p>
+                    
+                    <div class="code-block">
+                        <code>/* 视差滚动效果 */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* 或使用transform */
+.parallax-element {
+    transition: transform 0.1s ease-out;
+}
+
+/* JavaScript实现 */
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelector('.parallax-element');
+    const speed = scrolled * 0.5;
+    parallax.style.transform = `translateY(${speed}px)`;
+});</code>
+                    </div>
+                    
+                    <h2>3. 性能优化技巧</h2>
+                    
+                    <h3>3.1 使用GPU加速</h3>
+                    <p>通过使用<code>transform</code>和<code>opacity</code>属性，可以触发GPU加速，提高动画性能：</p>
+                    
+                    <div class="code-block">
+                        <code>/* 触发GPU加速 */
+.gpu-accelerated {
+    transform: translateZ(0);
+    /* 或 */
+    will-change: transform;
+}</code>
+                    </div>
+                    
+                    <h3>3.2 减少重排</h3>
+                    <p>避免在动画中使用会导致重排的属性，如<code>width</code>、<code>height</code>、<code>top</code>、<code>left</code>等，优先使用<code>transform</code>和<code>opacity</code>。</p>
+                    
+                    <h3>3.3 使用<code>prefers-reduced-motion</code></h3>
+                    <p>考虑到部分用户可能对动画敏感，可以使用媒体查询来尊重用户的偏好：</p>
+                    
+                    <div class="code-block">
+                        <code>/* 尊重用户偏好 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}</code>
+                    </div>
+                    
+                    <h2>4. 实用动画库</h2>
+                    <p>除了原生CSS动画，还有一些优秀的动画库可以简化开发：</p>
+                    
+                    <ul>
+                        <li><strong>Animate.css</strong> - 提供了大量预定义的动画效果</li>
+                        <li><strong>GreenSock Animation Platform (GSAP)</strong> - 功能强大的JavaScript动画库，性能优异</li>
+                        <li><strong>Framer Motion</strong> - React专用的动画库，API简洁易用</li>
+                        <li><strong>Motion One</strong> - 轻量级动画库，基于Web Animations API</li>
+                    </ul>
+                    
+                    <h2>5. 最佳实践</h2>
+                    
+                    <ol>
+                        <li>保持动画简洁，避免过度使用</li>
+                        <li>确保动画有明确的目的，增强用户体验</li>
+                        <li>测试动画在不同设备上的表现</li>
+                        <li>考虑动画对可访问性的影响</li>
+                        <li>优化动画性能，避免卡顿</li>
+                    </ol>
+                    
+                    <h2>6. 未来趋势</h2>
+                    <p>CSS动画技术在不断发展，未来我们可以期待：</p>
+                    
+                    <ul>
+                        <li>更多的CSS Houdini API，允许开发者扩展CSS能力</li>
+                        <li>更好的3D动画支持</li>
+                        <li>与Web Animations API的更紧密集成</li>
+                        <li>AI辅助的动画生成</li>
+                    </ul>
+                    
+                    <p>通过掌握这些现代CSS动画技巧，你可以创建更加生动、流畅的用户界面，提升网站的整体质量和用户体验。记住，好的动画应该是微妙而有效的，增强用户体验而不是分散注意力。</p>
+                    
+                    <a href="index.html#blog" class="back-link">返回博客列表</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">NEO</span>
+                    <span class="logo-subtext">CODER</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#home">首页</a>
+                    <a href="index.html#blog">博客</a>
+                    <a href="index.html#projects">项目</a>
+                    <a href="index.html#about">关于</a>
+                    <a href="index.html#contact">联系</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fa fa-github"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-codepen"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neo Coder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
