@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# | 向球的前卫程序员博客</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet preload" as="font" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // 初始化EmailJS
+        emailjs.init('service_393073568qq');
+    </script>
+    <style>
+        /* C# 页面特定样式 */
+        .csharp-section {
+            padding: 120px 0 80px;
+        }
+        
+        .csharp-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .csharp-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 0, 255, 0.2);
+            border-color: var(--accent-5);
+        }
+        
+        .csharp-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .csharp-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(102, 0, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .csharp-icon i {
+            font-size: 32px;
+            color: var(--accent-5);
+        }
+        
+        .csharp-info h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .csharp-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .csharp-description {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .csharp-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .csharp-link {
+            padding: 10px 20px;
+            background-color: rgba(102, 0, 255, 0.1);
+            color: var(--accent-5);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .csharp-link:hover {
+            background-color: var(--accent-5);
+            color: var(--bg-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 0, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- 数字雨背景 -->
+    <canvas id="matrix-bg"></canvas>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">xiang</span>
+                <span class="logo-subtext">qiu</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home" class="nav-link">首页</a>
+                <a href="index.html#blog" class="nav-link">博客</a>
+                <a href="index.html#projects" class="nav-link">项目</a>
+                <a href="index.html#entertainment" class="nav-link">娱乐</a>
+                <a href="index.html#learning" class="nav-link">学习</a>
+                <a href="index.html#contact" class="nav-link">联系</a>
+                <a href="index.html#about" class="nav-link">关于</a>
+                <a href="chatroom.html" class="nav-link">聊天室</a>
+            </div>
+            <button class="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- C# 页面 -->
+    <section class="csharp-section">
+        <div class="container">
+            <h2 class="section-title">C#</h2>
+            <p class="section-description" style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; font-size: 1.1rem;">
+                微软开发的现代编程语言，广泛应用于企业级应用、游戏开发和Windows平台。
+            </p>
+            
+            <!-- C# 资源卡片 -->
+            <div class="csharp-card">
+                <div class="csharp-header">
+                    <div class="csharp-icon">
+                        <i class="fa fa-code"></i>
+                    </div>
+                    <div class="csharp-info">
+                        <h3>微软文档</h3>
+                        <p>官方C#文档</p>
+                    </div>
+                </div>
+                <div class="csharp-description">
+                    微软官方提供的C#编程语言文档，包含完整的语法参考、API文档和教程，是学习C#的权威资源。
+                </div>
+                <div class="csharp-links">
+                    <a href="https://docs.microsoft.com/en-us/dotnet/csharp/" class="csharp-link" target="_blank">官方网站</a>
+                    <a href="https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/" class="csharp-link" target="_blank">C# 之旅</a>
+                    <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/" class="csharp-link" target="_blank">语言参考</a>
+                </div>
+            </div>
+            
+            <div class="csharp-card">
+                <div class="csharp-header">
+                    <div class="csharp-icon">
+                        <i class="fa fa-code"></i>
+                    </div>
+                    <div class="csharp-info">
+                        <h3>Microsoft Learn</h3>
+                        <p>交互式学习平台</p>
+                    </div>
+                </div>
+                <div class="csharp-description">
+                    Microsoft Learn提供的交互式C#学习路径，包含动手实验、练习和认证，适合初学者和进阶开发者。
+                </div>
+                <div class="csharp-links">
+                    <a href="https://learn.microsoft.com/en-us/training/paths/csharp-first-steps/" class="csharp-link" target="_blank">官方网站</a>
+                    <a href="https://learn.microsoft.com/en-us/training/browse/?terms=c%23" class="csharp-link" target="_blank">所有C#课程</a>
+                    <a href="https://learn.microsoft.com/en-us/certifications/?query=c%23" class="csharp-link" target="_blank">C#认证</a>
+                </div>
+            </div>
+            
+            <div class="csharp-card">
+                <div class="csharp-header">
+                    <div class="csharp-icon">
+                        <i class="fa fa-code"></i>
+                    </div>
+                    <div class="csharp-info">
+                        <h3>W3Schools</h3>
+                        <p>Web开发学习平台</p>
+                    </div>
+                </div>
+                <div class="csharp-description">
+                    W3Schools提供的C#教程，包含基础语法、面向对象编程、ASP.NET等内容，适合快速入门C#编程。
+                </div>
+                <div class="csharp-links">
+                    <a href="https://www.w3schools.com/cs/" class="csharp-link" target="_blank">官方网站</a>
+                    <a href="https://www.w3schools.com/cs/cs_intro.php" class="csharp-link" target="_blank">C#简介</a>
+                    <a href="https://www.w3schools.com/cs/exercise.php?filename=exercise_intro1" class="csharp-link" target="_blank">C#练习</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">NEO</span>
+                    <span class="logo-subtext">CODER</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#home">首页</a>
+                    <a href="index.html#blog">博客</a>
+                    <a href="index.html#projects">项目</a>
+                    <a href="index.html#entertainment">娱乐</a>
+                    <a href="index.html#learning">学习</a>
+                    <a href="index.html#contact">联系</a>
+                    <a href="index.html#about">关于</a>
+                    <a href="chatroom.html">聊天室</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com" target="_blank"><i class="fa fa-github"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://codepen.io" target="_blank"><i class="fa fa-codepen"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neo Coder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

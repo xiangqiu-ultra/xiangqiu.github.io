@@ -406,6 +406,344 @@ section {
     background-color: var(--bg-primary);
 }
 
+/* 娱乐区域样式 */
+.entertainment-section {
+    background-color: var(--bg-secondary);
+}
+
+/* 学习区域样式 */
+.learning-section {
+    background-color: var(--bg-primary);
+    padding: 100px 0;
+}
+
+.learning-content {
+    position: relative;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 旋转控制按钮 */
+.rotation-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 10;
+    padding: 0 20px;
+}
+
+.rotation-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(102, 0, 255, 0.8);
+    color: var(--text-primary);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.rotation-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--accent-5);
+    box-shadow: 0 0 20px rgba(102, 0, 255, 0.6);
+}
+
+/* 椭圆旋转容器 */
+.rotation-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    z-index: 1;
+}
+
+.rotation-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    z-index: 2;
+}
+
+.rotation-item {
+    position: absolute;
+    width: 280px;
+    height: 350px;
+    left: 50%;
+    top: 50%;
+    margin-left: -140px;
+    margin-top: -175px;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+    background-color: rgba(102, 0, 255, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    display: block !important;
+}
+
+.learning-card {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    transition: var(--transition);
+    border: 1px solid rgba(102, 0, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.learning-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(102, 0, 255, 0.2);
+    border-color: var(--accent-5);
+}
+
+.learning-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(102, 0, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.learning-card:hover .learning-icon {
+    background-color: var(--accent-5);
+    transform: scale(1.1);
+}
+
+.learning-icon i {
+    font-size: 24px;
+    color: var(--accent-5);
+    transition: var(--transition);
+}
+
+.learning-card:hover .learning-icon i {
+    color: var(--bg-primary);
+    transform: rotate(360deg);
+}
+
+.learning-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.learning-card:hover .learning-title {
+    color: var(--accent-5);
+}
+
+.learning-description {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    line-height: 1.5;
+    flex-grow: 1;
+    font-size: 0.9rem;
+}
+
+.learning-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.learning-link {
+    padding: 6px 12px;
+    background-color: rgba(102, 0, 255, 0.2);
+    color: var(--accent-5);
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.learning-card:hover .learning-link {
+    background-color: rgba(102, 0, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.learning-link:hover {
+    background-color: var(--accent-5);
+    color: var(--bg-primary);
+    box-shadow: 0 5px 15px rgba(102, 0, 255, 0.4);
+}
+
+/* 学习卡片链接样式 */
+.learning-card-link {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.learning-card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.learning-card-link:hover .learning-card {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(102, 0, 255, 0.2);
+    border-color: var(--accent-5);
+}
+
+.learning-card-link:hover .learning-card::before {
+    opacity: 1;
+    animation: shine 1.5s ease-in-out;
+}
+
+.entertainment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.entertainment-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.entertainment-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+    border-color: var(--accent-3);
+}
+
+.entertainment-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: var(--transition);
+    opacity: 0;
+}
+
+.entertainment-card:hover::before {
+    opacity: 1;
+    animation: shine 1.5s ease-in-out;
+}
+
+.entertainment-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(0, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    transition: var(--transition);
+}
+
+.entertainment-card:hover .entertainment-icon {
+    background-color: var(--accent-3);
+    transform: scale(1.1);
+}
+
+.entertainment-icon i {
+    font-size: 32px;
+    color: var(--accent-3);
+    transition: var(--transition);
+}
+
+.entertainment-card:hover .entertainment-icon i {
+    color: var(--bg-primary);
+    transform: rotate(360deg);
+}
+
+.entertainment-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.entertainment-card:hover .entertainment-title {
+    color: var(--accent-3);
+}
+
+.entertainment-description {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.entertainment-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.entertainment-item {
+    padding: 8px 16px;
+    background-color: rgba(0, 255, 255, 0.1);
+    color: var(--accent-3);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.entertainment-card:hover .entertainment-item {
+    background-color: rgba(0, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+/* 娱乐卡片链接样式 */
+.entertainment-card-link {
+    text-decoration: none;
+    display: block;
+}
+
+.entertainment-card-link:hover .entertainment-card {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+    border-color: var(--accent-3);
+}
+
+.entertainment-card-link:hover .entertainment-card::before {
+    opacity: 1;
+    animation: shine 1.5s ease-in-out;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -806,6 +1144,41 @@ section {
     section {
         padding: 60px 0;
     }
+    
+    /* 学习模块移动端适配 */
+    .learning-content {
+        height: 500px;
+    }
+    
+    .rotation-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    /* 调整卡片大小适配移动端 */
+    .rotation-item {
+        width: 150px !important;
+        height: 180px !important;
+        margin-left: -75px !important;
+        margin-top: -90px !important;
+    }
+    
+    .rotation-item h3 {
+        font-size: 14px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .rotation-item p {
+        font-size: 11px !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* 调整旋转半径 */
+    .rotation-container {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -822,5 +1195,34 @@ section {
         flex-direction: column;
         text-align: center;
         gap: 10px;
+    }
+    
+    /* 学习模块小屏幕适配 */
+    .learning-content {
+        height: 400px;
+    }
+    
+    .rotation-item {
+        width: 130px !important;
+        height: 150px !important;
+        margin-left: -65px !important;
+        margin-top: -75px !important;
+        padding: 10px !important;
+    }
+    
+    .rotation-item h3 {
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .rotation-item p {
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+    }
+    
+    .rotation-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
     }
 }

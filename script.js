@@ -607,6 +607,235 @@ function initPageLoader() {
     });
 }
 
+// 学习模块椭圆旋转功能
+function initLearningRotation() {
+    console.log('Initializing learning rotation...');
+    
+    // 获取学习内容容器
+    const learningContent = document.querySelector('.learning-content');
+    if (!learningContent) {
+        console.error('Learning content not found');
+        return;
+    }
+    
+    // 设置学习内容容器高度
+    learningContent.style.height = '400px';
+    learningContent.style.position = 'relative';
+    learningContent.style.display = 'flex';
+    learningContent.style.alignItems = 'center';
+    learningContent.style.justifyContent = 'center';
+    
+    // 清空容器
+    learningContent.innerHTML = '';
+    
+    // 创建旋转控制按钮
+    const controls = document.createElement('div');
+    controls.className = 'rotation-controls';
+    controls.innerHTML = `
+        <button class="rotation-btn left-btn" id="rotate-left">
+            <i class="fa fa-chevron-left"></i>
+        </button>
+        <button class="rotation-btn right-btn" id="rotate-right">
+            <i class="fa fa-chevron-right"></i>
+        </button>
+    `;
+    learningContent.appendChild(controls);
+    
+    // 创建旋转容器
+    const rotationContainer = document.createElement('div');
+    rotationContainer.className = 'rotation-container';
+    rotationContainer.id = 'rotation-container';
+    rotationContainer.style.position = 'absolute';
+    rotationContainer.style.width = '100%';
+    rotationContainer.style.height = '100%';
+    rotationContainer.style.perspective = '1000px';
+    rotationContainer.style.zIndex = '1';
+    
+    // 创建旋转舞台
+    const rotationStage = document.createElement('div');
+    rotationStage.className = 'rotation-stage';
+    rotationStage.id = 'rotation-stage';
+    rotationStage.style.position = 'relative';
+    rotationStage.style.width = '100%';
+    rotationStage.style.height = '100%';
+    rotationStage.style.transformStyle = 'preserve-3d';
+    
+    // 学习卡片数据
+    const learningCards = [
+        { title: 'C#', description: '微软开发的现代编程语言', page: 'learning-csharp.html' },
+        { title: 'Java', description: '跨平台的面向对象编程语言', page: 'learning-java.html' },
+        { title: 'Python', description: '简单易学的高级编程语言', page: 'learning-python.html' },
+        { title: 'JavaScript', description: 'Web前端开发的核心语言', page: 'learning-javascript.html' },
+        { title: 'HTML/CSS', description: 'Web前端开发的基础技术', page: 'learning-html-css.html' },
+        { title: '数据结构与算法', description: '计算机科学的基础', page: 'learning-algorithms.html' },
+        { title: '大模型', description: '大型语言模型技术', page: 'learning-llm.html' },
+        { title: 'AI技术', description: '人工智能技术', page: 'learning-ai.html' },
+        { title: '前沿技术', description: '探索未来技术趋势', page: 'learning-frontier.html' }
+    ];
+    
+    // 创建卡片
+    learningCards.forEach((card, index) => {
+        const item = document.createElement('div');
+        item.className = 'rotation-item';
+        item.dataset.index = index;
+        
+        // 设置基本样式
+        item.style.display = 'block';
+        item.style.position = 'absolute';
+        item.style.width = '200px';
+        item.style.height = '250px';
+        item.style.left = '50%';
+        item.style.top = '50%';
+        item.style.marginLeft = '-100px';
+        item.style.marginTop = '-125px';
+        item.style.opacity = '1';
+        item.style.zIndex = '10';
+        item.style.backgroundColor = 'rgba(102, 0, 255, 0.8)';
+        item.style.border = '2px solid #6600ff';
+        item.style.borderRadius = '12px';
+        item.style.padding = '20px';
+        item.style.transition = 'all 0.5s ease';
+        item.style.boxShadow = '0 8px 16px rgba(102, 0, 255, 0.8)';
+        item.style.color = '#ffffff';
+        item.style.fontFamily = 'Arial, sans-serif';
+        item.style.textAlign = 'center';
+        item.style.fontSize = '14px';
+        item.style.cursor = 'pointer';
+        item.style.backfaceVisibility = 'hidden';
+        
+        // 卡片内容
+        item.innerHTML = `
+            <h3 style="margin-bottom: 10px; font-size: 18px; font-weight: bold;">${card.title}</h3>
+            <p style="margin: 0; line-height: 1.4;">${card.description}</p>
+        `;
+        
+        // 添加点击事件
+        item.addEventListener('click', () => {
+            console.log(`Card ${card.title} clicked, navigating to ${card.page}`);
+            window.location.href = card.page;
+        });
+        
+        rotationStage.appendChild(item);
+        console.log(`Created card ${index}: ${card.title}, page: ${card.page}`);
+    });
+    
+    // 组装容器
+    rotationContainer.appendChild(rotationStage);
+    learningContent.appendChild(rotationContainer);
+    
+    // 获取元素
+    const rotateLeftBtn = document.getElementById('rotate-left');
+    const rotateRightBtn = document.getElementById('rotate-right');
+    const rotationItems = document.querySelectorAll('.rotation-item');
+    
+    const itemCount = rotationItems.length;
+    let currentIndex = 0;
+    
+    console.log(`Found ${itemCount} rotation items`);
+    
+    // 旋转函数
+    function rotate(direction) {
+        currentIndex = (currentIndex + direction + itemCount) % itemCount;
+        
+        // 固定旋转半径
+        const radius = 200;
+        
+        rotationItems.forEach((item, index) => {
+            const angle = (index - currentIndex) * (360 / itemCount) * Math.PI / 180;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius * 0.4;
+            const scale = 0.7 + (Math.cos(angle) + 1) * 0.15;
+            const opacity = 0.5 + (Math.cos(angle) + 1) * 0.25;
+            
+            item.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${scale})`;
+            item.style.opacity = opacity;
+            item.style.zIndex = Math.floor(scale * 100);
+        });
+        
+        console.log(`Rotated to index ${currentIndex}`);
+    }
+    
+    // 绑定按钮事件
+    if (rotateLeftBtn) {
+        rotateLeftBtn.addEventListener('click', () => {
+            console.log('Left button clicked');
+            rotate(-1);
+        });
+    }
+    
+    if (rotateRightBtn) {
+        rotateRightBtn.addEventListener('click', () => {
+            console.log('Right button clicked');
+            rotate(1);
+        });
+    }
+    
+    // 添加触摸滑动功能
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    rotationContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
+    
+    rotationContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // 向左滑动
+            console.log('Swiped left');
+            rotate(1);
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // 向右滑动
+            console.log('Swiped right');
+            rotate(-1);
+        }
+    }
+    
+    // 初始化旋转
+    console.log('Initializing rotation...');
+    console.log('Rotation items count:', rotationItems.length);
+    
+    // 为每个卡片设置初始位置
+    rotationItems.forEach((item, index) => {
+        const initialAngle = index * (360 / rotationItems.length) * Math.PI / 180;
+        const initialX = Math.cos(initialAngle) * 200;
+        const initialY = Math.sin(initialAngle) * 200 * 0.4;
+        item.style.transform = `translate(-50%, -50%) translate(${initialX}px, ${initialY}px) scale(0.7)`;
+        item.style.opacity = '0.7';
+        item.style.zIndex = index;
+        console.log(`Set initial position for item ${index}: x=${initialX}, y=${initialY}`);
+    });
+    
+    // 延迟执行旋转，确保卡片都已创建
+    setTimeout(() => {
+        rotate(0);
+        console.log('Initial rotation completed');
+        
+        // 自动旋转
+        setInterval(() => {
+            rotate(1);
+        }, 4000);
+    }, 100);
+    
+    // 响应式调整
+    window.addEventListener('resize', () => {
+        const screenWidth = window.innerWidth;
+        if (screenWidth < 768) {
+            learningContent.style.height = '350px';
+        } else {
+            learningContent.style.height = '400px';
+        }
+        rotate(0);
+    });
+    
+    console.log('Learning rotation initialized successfully');
+}
+
 // 初始化所有功能
 function initAll() {
     // 页面加载动画
@@ -644,6 +873,9 @@ function initAll() {
     
     // 返回顶部按钮
     initBackToTop();
+    
+    // 学习模块旋转
+    initLearningRotation();
     
     // 动态样式
     addDynamicStyles();
