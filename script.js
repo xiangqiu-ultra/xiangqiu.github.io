@@ -589,8 +589,8 @@ function initPageLoader() {
     loader.innerHTML = `
         <div class="loader-content">
             <div class="loader-logo">
-                <span class="logo-text">NEO</span>
-                <span class="logo-subtext">CODER</span>
+                <span class="logo-text">XiangQiu</span>
+                <span class="logo-subtext">DEVELOPER</span>
             </div>
             <div class="loader-spinner"></div>
         </div>
