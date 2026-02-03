@@ -306,7 +306,24 @@ section {
 
 /* 博客区域样式 */
 .blog-section {
-    background-color: var(--bg-secondary);
+    background-color: transparent;
+    position: relative;
+}
+
+.blog-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    z-index: 0;
+}
+
+.blog-section .container {
+    position: relative;
+    z-index: 1;
 }
 
 .blog-grid {
@@ -403,18 +420,54 @@ section {
 
 /* 项目区域样式 */
 .projects-section {
-    background-color: var(--bg-primary);
+    background-color: transparent;
+    position: relative;
+}
+
+.projects-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    z-index: 0;
+}
+
+.projects-section .container {
+    position: relative;
+    z-index: 1;
 }
 
 /* 娱乐区域样式 */
 .entertainment-section {
-    background-color: var(--bg-secondary);
+    background-color: transparent;
+    position: relative;
+}
+
+.entertainment-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    z-index: 0;
+}
+
+.entertainment-section .container {
+    position: relative;
+    z-index: 1;
 }
 
 /* 学习区域样式 */
-.learning-section {
-    background-color: var(--bg-primary);
-    padding: 100px 0;
+
+
+.learning-section .section-title {
+    position: relative;
+    z-index: 100;
 }
 
 .learning-content {
@@ -839,7 +892,24 @@ section {
 
 /* 关于区域样式 */
 .about-section {
-    background-color: var(--bg-secondary);
+    background-color: transparent;
+    position: relative;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    z-index: 0;
+}
+
+.about-section .container {
+    position: relative;
+    z-index: 1;
 }
 
 .about-content {
@@ -895,7 +965,24 @@ section {
 
 /* 联系区域样式 */
 .contact-section {
-    background-color: var(--bg-primary);
+    background-color: transparent;
+    position: relative;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    z-index: 0;
+}
+
+.contact-section .container {
+    position: relative;
+    z-index: 1;
 }
 
 .contact-content {

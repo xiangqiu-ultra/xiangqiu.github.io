@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食 | 向球的前卫程序员博客</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet preload" as="font" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // 初始化EmailJS
+        emailjs.init('service_393073568qq');
+    </script>
+    <style>
+        /* 美食页面特定样式 */
+        .food-section {
+            padding: 120px 0 80px;
+        }
+        
+        .food-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .food-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 102, 0, 0.2);
+            border-color: var(--accent-4);
+        }
+        
+        .food-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .food-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 102, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .food-icon i {
+            font-size: 32px;
+            color: var(--accent-4);
+        }
+        
+        .food-info h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .food-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .food-description {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .food-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .food-link {
+            padding: 10px 20px;
+            background-color: rgba(255, 102, 0, 0.1);
+            color: var(--accent-4);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .food-link:hover {
+            background-color: var(--accent-4);
+            color: var(--bg-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 102, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- 数字雨背景 -->
+    <canvas id="matrix-bg"></canvas>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">xiang</span>
+                <span class="logo-subtext">qiu</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home" class="nav-link">首页</a>
+                <a href="index.html#blog" class="nav-link">博客</a>
+                <a href="index.html#projects" class="nav-link">项目</a>
+                <a href="index.html#entertainment" class="nav-link">娱乐</a>
+                <a href="index.html#contact" class="nav-link">联系</a>
+                <a href="index.html#about" class="nav-link">关于</a>
+                <a href="chatroom.html" class="nav-link">聊天室</a>
+            </div>
+            <button class="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- 美食页面 -->
+    <section class="food-section">
+        <div class="container">
+            <h2 class="section-title">美食</h2>
+            <p class="section-description" style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; font-size: 1.1rem;">
+                发现世界各地的美食文化和特色菜肴，探索烹饪技巧和美食攻略。
+            </p>
+            
+            <!-- 美食卡片 -->
+            <div class="food-card">
+                <div class="food-header">
+                    <div class="food-icon">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <div class="food-info">
+                        <h3>中餐</h3>
+                        <p>中国传统美食</p>
+                    </div>
+                </div>
+                <div class="food-description">
+                    中餐是中国传统饮食文化的代表，拥有八大菜系，包括川菜、粤菜、鲁菜、淮扬菜等，以其丰富的口味和精湛的烹饪技艺闻名世界。
+                </div>
+                <div class="food-links">
+                    <a href="https://www.meishichina.com/" class="food-link" target="_blank">美食天下</a>
+                    <a href="https://www.xiachufang.com/" class="food-link" target="_blank">下厨房</a>
+                    <a href="https://www.123cha.com/" class="food-link" target="_blank">餐饮网</a>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-header">
+                    <div class="food-icon">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <div class="food-info">
+                        <h3>西餐</h3>
+                        <p>西方饮食文化</p>
+                    </div>
+                </div>
+                <div class="food-description">
+                    西餐是西方饮食文化的统称，包括法国菜、意大利菜、美国菜等，注重食材的新鲜和烹饪的技巧，强调营养均衡和视觉美感。
+                </div>
+                <div class="food-links">
+                    <a href="https://www.yelp.com/" class="food-link" target="_blank">Yelp</a>
+                    <a href="https://www.opentable.com/" class="food-link" target="_blank">OpenTable</a>
+                    <a href="https://www.foodnetwork.com/" class="food-link" target="_blank">Food Network</a>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-header">
+                    <div class="food-icon">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <div class="food-info">
+                        <h3>日料</h3>
+                        <p>日本传统美食</p>
+                    </div>
+                </div>
+                <div class="food-description">
+                    日料是日本传统饮食文化的代表，包括寿司、刺身、拉面等，注重食材的新鲜和季节性，强调食物的原味和视觉呈现。
+                </div>
+                <div class="food-links">
+                    <a href="https://www.sushi.com/" class="food-link" target="_blank">寿司网</a>
+                    <a href="https://www.japan-guide.com/e/e2099.html" class="food-link" target="_blank">日本美食指南</a>
+                    <a href="https://www.sushiclasses.com/" class="food-link" target="_blank">寿司课程</a>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-header">
+                    <div class="food-icon">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <div class="food-info">
+                        <h3>泰餐</h3>
+                        <p>泰国传统美食</p>
+                    </div>
+                </div>
+                <div class="food-description">
+                    泰餐是泰国传统饮食文化的代表，以其独特的酸辣口味和丰富的香料闻名，包括冬阴功汤、泰式咖喱、青木瓜沙拉等特色菜肴。
+                </div>
+                <div class="food-links">
+                    <a href="https://www.thaifood.com/" class="food-link" target="_blank">泰国美食</a>
+                    <a href="https://www.thaifoodrecipes.com/" class="food-link" target="_blank">泰餐食谱</a>
+                    <a href="https://www.tasteofthailand.com/" class="food-link" target="_blank">泰国味道</a>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-header">
+                    <div class="food-icon">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <div class="food-info">
+                        <h3>意餐</h3>
+                        <p>意大利传统美食</p>
+                    </div>
+                </div>
+                <div class="food-description">
+                    意餐是意大利传统饮食文化的代表，以其简单而精致的烹饪风格闻名，包括披萨、意大利面、意式冰淇淋等经典菜肴，注重食材的品质和原味。
+                </div>
+                <div class="food-links">
+                    <a href="https://www.italianfood.net/" class="food-link" target="_blank">意大利美食</a>
+                    <a href="https://www.greatitalianchefs.com/" class="food-link" target="_blank">意大利厨师</a>
+                    <a href="https://www.italianfoodforever.com/" class="food-link" target="_blank">意大利美食 forever</a>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-header">
+                    <div class="food-icon">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <div class="food-info">
+                        <h3>墨西哥菜</h3>
+                        <p>墨西哥传统美食</p>
+                    </div>
+                </div>
+                <div class="food-description">
+                    墨西哥菜是墨西哥传统饮食文化的代表，以其丰富的色彩和口味闻名，包括 tacos、burritos、enchiladas 等特色菜肴，常使用辣椒、玉米和豆类等食材。
+                </div>
+                <div class="food-links">
+                    <a href="https://www.mexicanfoodjournal.com/" class="food-link" target="_blank">墨西哥美食期刊</a>
+                    <a href="https://www.mexicanmadeeasy.com/" class="food-link" target="_blank">墨西哥美食简易制作</a>
+                    <a href="https://www.saveur.com/mexican-recipes/" class="food-link" target="_blank">Saveur 墨西哥食谱</a>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-header">
+                    <div class="food-icon">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <div class="food-info">
+                        <h3>印度菜</h3>
+                        <p>印度传统美食</p>
+                    </div>
+                </div>
+                <div class="food-description">
+                    印度菜是印度传统饮食文化的代表，以其丰富的香料和复杂的口味闻名，包括咖喱、烤饼、印度香饭等特色菜肴，不同地区有各自独特的烹饪风格。
+                </div>
+                <div class="food-links">
+                    <a href="https://www.indianfoodforever.com/" class="food-link" target="_blank">印度美食 forever</a>
+                    <a href="https://www.vegrecipesofindia.com/" class="food-link" target="_blank">印度素食食谱</a>
+                    <a href="https://www.sanjeevkapoor.com/" class="food-link" target="_blank">Sanjeev Kapoor</a>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-header">
+                    <div class="food-icon">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <div class="food-info">
+                        <h3>素食</h3>
+                        <p>植物性饮食</p>
+                    </div>
+                </div>
+                <div class="food-description">
+                    素食是一种以植物性食物为主的饮食方式，包括蔬菜、水果、谷物、豆类等，注重健康和环保，有纯素食、蛋奶素等不同类型。
+                </div>
+                <div class="food-links">
+                    <a href="https://www.vegetariantimes.com/" class="food-link" target="_blank">素食时代</a>
+                    <a href="https://www.peta.org/recipes/" class="food-link" target="_blank">PETA 食谱</a>
+                    <a href="https://www.ohsheglows.com/" class="food-link" target="_blank">Oh She Glows</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">NEO</span>
+                    <span class="logo-subtext">CODER</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#home">首页</a>
+                    <a href="index.html#blog">博客</a>
+                    <a href="index.html#projects">项目</a>
+                    <a href="index.html#entertainment">娱乐</a>
+                    <a href="index.html#contact">联系</a>
+                    <a href="index.html#about">关于</a>
+                    <a href="chatroom.html">聊天室</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com" target="_blank"><i class="fa fa-github"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://codepen.io" target="_blank"><i class="fa fa-codepen"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neo Coder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

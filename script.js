@@ -674,7 +674,12 @@ function initLearningRotation() {
     ];
     
     // 创建卡片
+    console.log('Creating cards...');
+    console.log('Learning cards data:', learningCards);
+    
     learningCards.forEach((card, index) => {
+        console.log(`Processing card ${index}:`, card);
+        
         const item = document.createElement('div');
         item.className = 'rotation-item';
         item.dataset.index = index;
@@ -682,32 +687,35 @@ function initLearningRotation() {
         // 设置基本样式
         item.style.display = 'block';
         item.style.position = 'absolute';
-        item.style.width = '200px';
-        item.style.height = '250px';
+        item.style.width = '220px';
+        item.style.height = '280px';
         item.style.left = '50%';
         item.style.top = '50%';
-        item.style.marginLeft = '-100px';
-        item.style.marginTop = '-125px';
+        item.style.marginLeft = '-110px';
+        item.style.marginTop = '-140px';
         item.style.opacity = '1';
         item.style.zIndex = '10';
-        item.style.backgroundColor = 'rgba(102, 0, 255, 0.8)';
-        item.style.border = '2px solid #6600ff';
+        item.style.backgroundColor = 'rgba(102, 0, 255, 0.9)';
+        item.style.border = '2px solid #8a2be2';
         item.style.borderRadius = '12px';
-        item.style.padding = '20px';
+        item.style.padding = '25px';
         item.style.transition = 'all 0.5s ease';
         item.style.boxShadow = '0 8px 16px rgba(102, 0, 255, 0.8)';
-        item.style.color = '#ffffff';
         item.style.fontFamily = 'Arial, sans-serif';
         item.style.textAlign = 'center';
-        item.style.fontSize = '14px';
         item.style.cursor = 'pointer';
         item.style.backfaceVisibility = 'hidden';
         
         // 卡片内容
-        item.innerHTML = `
-            <h3 style="margin-bottom: 10px; font-size: 18px; font-weight: bold;">${card.title}</h3>
-            <p style="margin: 0; line-height: 1.4;">${card.description}</p>
+        const content = `
+            <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <h3 style="margin-bottom: 15px; font-size: 20px; font-weight: bold; color: #ffffff; text-shadow: 0 0 10px #ffffff;">${card.title}</h3>
+                <p style="margin: 0; line-height: 1.4; color: #f0f0f0; text-shadow: 0 0 5px #f0f0f0;">${card.description}</p>
+            </div>
         `;
+        
+        item.innerHTML = content;
+        console.log(`Set content for card ${index}:`, content);
         
         // 添加点击事件
         item.addEventListener('click', () => {
