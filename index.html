@@ -27,6 +27,7 @@
             <div class="nav-links">
                 <a href="#home" class="nav-link">首页</a>
                 <a href="#blog" class="nav-link">博客</a>
+                <a href="#news" class="nav-link">新闻</a>
                 <a href="#projects" class="nav-link">项目</a>
                 <a href="#entertainment" class="nav-link">娱乐</a>
                 <a href="#learning" class="nav-link">学习</a>
@@ -93,6 +94,30 @@
                         <a href="blog-ai-in-development.html" class="blog-readmore">阅读更多</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 新闻区域 -->
+    <section id="news" class="news-section">
+        <div class="container">
+            <h2 class="section-title">全球实时新闻</h2>
+            <div class="news-categories">
+                <button class="category-btn active" data-category="all">全部</button>
+                <button class="category-btn" data-category="technology">科技</button>
+                <button class="category-btn" data-category="business">商业</button>
+                <button class="category-btn" data-category="health">健康</button>
+                <button class="category-btn" data-category="sports">体育</button>
+                <button class="category-btn" data-category="entertainment">娱乐</button>
+                <button class="category-btn" data-category="science">科学</button>
+                <button class="category-btn" data-category="world">国际</button>
+                <button class="category-btn" data-category="military">军事</button>
+            </div>
+            <div class="news-grid" id="news-grid">
+                <!-- 新闻卡片将通过JavaScript动态生成 -->
+            </div>
+            <div class="news-load-more">
+                <button id="load-more-news" class="btn btn-primary">加载更多</button>
             </div>
         </div>
     </section>
@@ -564,6 +589,7 @@
                 <div class="footer-links">
                     <a href="#home">首页</a>
                     <a href="#blog">博客</a>
+                    <a href="#news">新闻</a>
                     <a href="#projects">项目</a>
                     <a href="#entertainment">娱乐</a>
                     <a href="#learning">学习</a>

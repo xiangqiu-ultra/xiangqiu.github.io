@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年度最受欢迎电影揭晓 | 向 球</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet preload" as="font" crossorigin="anonymous">
+</head>
+<body>
+    <!-- 数字雨背景 -->
+    <canvas id="matrix-bg"></canvas>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">xiangqiu</span>
+                <span class="logo-subtext">CODER</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home" class="nav-link">首页</a>
+                <a href="index.html#blog" class="nav-link">博客</a>
+                <a href="index.html#news" class="nav-link active">新闻</a>
+                <a href="index.html#projects" class="nav-link">项目</a>
+                <a href="index.html#entertainment" class="nav-link">娱乐</a>
+                <a href="index.html#learning" class="nav-link">学习</a>
+                <a href="index.html#contact" class="nav-link">联系</a>
+                <a href="chatroom.html" class="nav-link">聊天室</a>
+                <a href="index.html#about" class="nav-link">关于</a>
+            </div>
+            <button class="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- 新闻详情区域 -->
+    <section class="news-detail-section">
+        <div class="container">
+            <div class="news-detail-header">
+                <span class="news-source">娱乐周刊</span>
+                <span class="news-date">2026-02-29</span>
+            </div>
+            <h1 class="news-detail-title">年度最受欢迎电影揭晓</h1>
+            <div class="news-detail-content">
+                <p>根据全球票房和观众评分，2025年度最受欢迎电影名单正式公布，科幻大片《星际穿越2》以超过10亿美元的票房位居榜首，成为年度最卖座电影。</p>
+                <p>《星际穿越2》作为克里斯托弗·诺兰导演的续作，延续了前作的宏大叙事和视觉奇观，讲述了人类在宇宙中寻找新家园的故事。影片上映后获得了观众和评论家的一致好评，IMDb评分高达9.2分，烂番茄新鲜度95%。</p>
+                <p>位居第二的是超级英雄电影《复仇者联盟：终局之战2》，票房达到8.5亿美元。这部电影作为漫威电影宇宙的重要篇章，集结了众多超级英雄，为观众带来了一场视觉盛宴。</p>
+                <p>排名第三的是动画电影《冰雪奇缘3》，票房达到6.2亿美元。这部电影延续了前两部的成功，以精美的画面和动人的音乐赢得了全球观众的喜爱。</p>
+                <p>此外，还有多部优秀电影入选年度最受欢迎电影名单，包括《速度与激情12》、《碟中谍10》、《变形金刚：起源》等。这些电影在票房和口碑上都取得了不错的成绩。</p>
+                <p>业内人士分析，2025年电影市场的复苏主要得益于优质内容的回归和观众对大银幕体验的渴望。随着技术的不断进步，电影的视觉效果和叙事方式也在不断创新，为观众带来了更加沉浸式的观影体验。</p>
+                <p>展望2026年，电影市场有望继续保持增长态势，多部备受期待的大片将陆续上映，包括《阿凡达3》、《星球大战：新希望》、《侏罗纪世界4》等。这些电影有望为观众带来更多惊喜，推动电影市场的进一步发展。</p>
+            </div>
+            <div class="news-detail-footer">
+                <span class="news-category-tag">娱乐</span>
+                <a href="index.html#news" class="btn btn-secondary">返回新闻列表</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">xiangqiu</span>
+                    <span class="logo-subtext">CODER</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#home">首页</a>
+                    <a href="index.html#blog">博客</a>
+                    <a href="index.html#news">新闻</a>
+                    <a href="index.html#projects">项目</a>
+                    <a href="index.html#entertainment">娱乐</a>
+                    <a href="index.html#learning">学习</a>
+                    <a href="index.html#contact">联系</a>
+                    <a href="index.html#about">关于</a>
+                    <a href="chatroom.html">聊天室</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com" target="_blank"><i class="fa fa-github"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://codepen.io" target="_blank"><i class="fa fa-codepen"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 xiang qiu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
