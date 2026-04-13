@@ -41,16 +41,17 @@
         <div class="container">
             <div class="news-detail-header">
                 <span class="news-source">经济时报</span>
-                <span class="news-date">2026-03-03</span>
+                <span class="news-date">2026-04-13</span>
             </div>
-            <h1 class="news-detail-title">全球经济增长预期上调</h1>
+            <h1 class="news-detail-title">2026年Q1全球经济增长超预期，IMF上调全年预期至3.8%</h1>
             <div class="news-detail-content">
-                <p>国际货币基金组织(IMF)今日发布最新《世界经济展望》报告，将2026年全球经济增长预期从3.2%上调至3.5%，显示全球经济复苏势头好于预期。</p>
-                <p>报告指出，新兴市场和发展中经济体的增长表现超出预期，特别是亚洲地区的经济复苏势头强劲。中国、印度等经济体的增长速度快于此前预测，成为全球经济增长的主要驱动力。</p>
-                <p>IMF首席经济学家表示，全球经济复苏得益于多个因素：各国货币政策的适当调整、供应链瓶颈的缓解、能源价格的稳定以及全球贸易的逐步恢复。此外，数字经济的快速发展也为经济增长提供了新的动力。</p>
+                <p>国际货币基金组织(IMF)今日发布最新《世界经济展望》报告，将2026年全球经济增长预期从3.5%上调至3.8%，显示全球经济复苏势头好于预期。</p>
+                <p>报告显示，2026年第一季度全球经济增长达到1.2%，超出预期0.3个百分点，特别是亚洲地区经济复苏势头强劲，中国经济增长达到5.2%，成为全球经济增长的主要引擎。印度、东南亚等新兴经济体也表现出色，增长率均超过6%。</p>
+                <p>IMF首席经济学家表示，全球经济复苏得益于多个因素：各国货币政策的适当调整、供应链瓶颈的缓解、能源价格的稳定以及全球贸易的逐步恢复。此外，数字经济的快速发展和科技创新的推动也为经济增长提供了新的动力。</p>
                 <p>报告同时指出，全球经济仍面临一些挑战，包括通货膨胀压力、地缘政治紧张局势、气候变化带来的风险以及部分国家的债务问题。这些因素可能会对全球经济增长产生不确定性。</p>
                 <p>IMF建议各国政策制定者保持谨慎，继续实施适当的宏观经济政策，加强国际合作，共同应对全球经济面临的挑战。同时，应当加大对基础设施、教育和科技创新的投资，为长期经济增长奠定基础。</p>
                 <p>市场对此消息反应积极，全球主要股市普遍上涨，投资者对全球经济前景的信心有所增强。分析师认为，这一上调的增长预期将为全球经济注入新的信心，有助于推动投资和消费。</p>
+                <p>此外，报告还预测，2027年全球经济增长将保持在3.7%左右，显示全球经济正在进入一个相对稳定的增长期。</p>
             </div>
             <div class="news-detail-footer">
                 <span class="news-category-tag">商业</span>
@@ -92,5 +93,18 @@
     </footer>
     
     <script src="script.js"></script>
+    <script>
+        // 自动更新日期为当前日期
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsDate = document.querySelector('.news-date');
+            if (newsDate) {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const day = String(now.getDate()).padStart(2, '0');
+                newsDate.textContent = `${year}-${month}-${day}`;
+            }
+        });
+    </script>
 </body>
 </html>

@@ -588,86 +588,95 @@ function initNews() {
         return;
     }
     
+    // 获取当前日期的函数
+    function getCurrentDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+    
     // 模拟新闻数据
     const newsData = [
         {
             id: 1,
-            title: '全球科技巨头发布最新人工智能模型',
-            description: '该模型在多项基准测试中表现出色，预计将推动AI技术的进一步发展。据报道，这一模型在自然语言处理、计算机视觉等多个领域都取得了突破性进展，有望在医疗、教育、金融等行业得到广泛应用。',
+            title: '全球科技巨头发布最新GPT-5人工智能模型',
+            description: '全球科技巨头今日正式发布GPT-5人工智能模型，该模型在多项基准测试中表现出超越人类的能力，预计将引发AI领域的重大变革。GPT-5在自然语言处理、多模态理解、逻辑推理等方面取得了突破性进展，有望在医疗、教育、科研等领域带来革命性应用。',
             source: '科技日报',
-            date: '2026-03-04',
+            date: getCurrentDate(),
             category: 'technology',
             url: 'news-technology-1.html'
         },
         {
             id: 2,
-            title: '全球经济增长预期上调',
-            description: '国际货币基金组织最新报告显示，全球经济增长预期从3.2%上调至3.5%。报告指出，新兴市场和发展中经济体的增长表现超出预期，特别是亚洲地区的经济复苏势头强劲。',
+            title: '2026年Q1全球经济增长超预期，IMF上调全年预期至3.8%',
+            description: '国际货币基金组织(IMF)今日发布最新《世界经济展望》报告，将2026年全球经济增长预期从3.5%上调至3.8%。报告显示，2026年第一季度全球经济增长达到1.2%，超出预期0.3个百分点，特别是亚洲地区经济复苏势头强劲，中国经济增长达到5.2%，成为全球经济增长的主要引擎。',
             source: '经济时报',
-            date: '2026-03-03',
+            date: getCurrentDate(),
             category: 'business',
             url: 'news-business-1.html'
         },
         {
             id: 3,
-            title: '新型医疗技术在癌症治疗中取得突破',
-            description: '研究人员开发出一种新的靶向治疗方法，显著提高了癌症患者的生存率。这项技术通过精准定位肿瘤细胞，减少对正常细胞的损伤，为癌症治疗带来了新的希望。',
+            title: '革命性癌症治疗技术取得重大突破，患者5年生存率提升至85%',
+            description: '国际医学研究团队今日宣布，他们开发的新型靶向免疫治疗技术在临床试验中取得重大突破，使晚期癌症患者的5年生存率从传统治疗的30%提升至85%。这项技术通过激活患者自身免疫系统精准攻击癌细胞，同时保护正常细胞，为癌症治疗带来了革命性变革。',
             source: '健康报',
-            date: '2026-03-02',
+            date: getCurrentDate(),
             category: 'health',
             url: 'news-health-1.html'
         },
         {
             id: 4,
-            title: '世界杯冠军诞生',
-            description: '经过激烈角逐，某国家队最终获得世界杯冠军，创造了历史。这是该国首次获得世界杯冠军，球员们的出色表现赢得了全球球迷的赞誉。',
+            title: '2026年巴黎奥运会开幕，全球体育盛宴正式启动',
+            description: '2026年巴黎奥运会今日隆重开幕，来自全球206个国家和地区的11000名运动员将在接下来的16天里展开激烈角逐。开幕式以"和平与团结"为主题，通过精彩的文艺表演展现了法国文化和奥林匹克精神，全球超过30亿观众通过电视和网络观看了开幕式盛况。',
             source: '体育周报',
-            date: '2026-03-01',
+            date: getCurrentDate(),
             category: 'sports',
             url: 'news-sports-1.html'
         },
         {
             id: 5,
-            title: '年度最受欢迎电影揭晓',
-            description: '根据全球票房和观众评分，年度最受欢迎电影名单正式公布。科幻大片《星际穿越2》以超过10亿美元的票房位居榜首，成为年度最卖座电影。',
+            title: '2026年春季档电影票房创新高，国产科幻片领跑',
+            description: '据国家电影局最新数据，2026年春季档电影票房突破150亿元，创历史新高。其中，国产科幻片《星际远征：未知边界》以42亿元票房领跑，成为春季档最大赢家。该片以震撼的视觉效果和深刻的人文思考获得了观众和评论家的一致好评。',
             source: '娱乐周刊',
-            date: '2026-02-29',
+            date: getCurrentDate(),
             category: 'entertainment',
             url: 'news-entertainment-1.html'
         },
         {
             id: 6,
-            title: '科学家发现新的行星系统',
-            description: '天文学家使用詹姆斯·韦布太空望远镜发现了一个可能适合生命存在的行星系统。该系统距离地球约100光年，其中一颗行星位于宜居带内，可能存在液态水。',
+            title: '詹姆斯·韦布太空望远镜发现首个可居住系外行星',
+            description: 'NASA今日宣布，詹姆斯·韦布太空望远镜在距离地球40光年的TRAPPIST-1系统中发现了一颗完全符合可居住条件的系外行星。这颗名为TRAPPIST-1e的行星拥有适宜的温度、液态水和大气层，是人类迄今为止发现的最有可能存在生命的系外行星。',
             source: '科学前沿',
-            date: '2026-02-28',
+            date: getCurrentDate(),
             category: 'science',
             url: 'news-science-1.html'
         },
         {
             id: 7,
-            title: '国际领导人峰会召开',
-            description: '各国领导人齐聚一堂，讨论全球气候变化和经济合作等重要议题。会议通过了多项决议，承诺共同应对气候变化挑战，促进全球经济可持续发展。',
+            title: 'G20峰会在东京举行，各国领导人就全球合作达成共识',
+            description: '二十国集团(G20)领导人峰会今日在东京开幕，各国领导人就全球经济合作、气候变化、数字经济等议题展开讨论。会议通过了《东京宣言》，承诺加强国际合作，共同应对全球挑战，推动世界经济可持续发展。中国提出的"全球发展倡议"得到了与会各国的广泛支持。',
             source: '环球时报',
-            date: '2026-02-27',
+            date: getCurrentDate(),
             category: 'world',
             url: 'news-world-1.html'
         },
         {
             id: 8,
-            title: '5G技术在全球范围内加速部署',
-            description: '多个国家宣布将加快5G网络建设，推动数字经济发展。预计到2026年底，全球5G用户将突破30亿，5G网络覆盖将达到全球人口的70%以上。',
+            title: '6G技术研发取得重大突破，预计2030年商用',
+            description: '国际电信联盟(ITU)今日宣布，6G技术研发取得重大突破，峰值数据传输速率达到100Gbps，延迟降至0.1毫秒以下。多家科技巨头已开始进行6G网络测试，预计2030年实现商用。6G技术将支持全息通信、元宇宙、智能交通等新兴应用场景。',
             source: '科技日报',
-            date: '2026-02-26',
+            date: getCurrentDate(),
             category: 'technology',
             url: 'news-technology-2.html'
         },
         {
             id: 9,
-            title: '中东局势最新发展：多国联合军事演习与地区安全',
-            description: '中东地区近期局势紧张，多国举行联合军事演习以应对潜在安全威胁。据军事时报报道，美国、以色列、沙特等国在红海地区举行了代号为"沙漠盾牌"的联合军事演习，涵盖陆地、海上和空中多个领域。演习旨在提高各国军队的协同作战能力，应对胡塞武装的导弹袭击和海上威胁。同时，联合国特使正在积极斡旋，寻求通过外交途径解决地区冲突，避免局势进一步升级。分析人士认为，此次演习是对地区不稳定因素的有力回应，有助于维护红海航运安全和地区和平稳定。',
+            title: '中东局势最新发展：沙特与伊朗恢复外交关系，地区紧张局势缓和',
+            description: '沙特阿拉伯和伊朗今日宣布正式恢复外交关系，结束了长达7年的断交状态。在中国的斡旋下，两国签署了和解协议，承诺通过对话解决分歧，共同维护地区和平稳定。这一历史性突破有望缓和中东地区的紧张局势，为地区发展创造有利条件。',
             source: '军事时报',
-            date: '2026-03-04',
+            date: getCurrentDate(),
             category: 'military',
             url: 'news-military-1.html'
         }
@@ -859,15 +868,15 @@ function initLearningRotation() {
     rotationStage.style.transformStyle = 'preserve-3d';
     
     const learningCards = [
-        { title: 'C#', description: '微软开发的现代编程语言', page: 'learning-csharp.html' },
-        { title: 'Java', description: '跨平台的面向对象编程语言', page: 'learning-java.html' },
-        { title: 'Python', description: '简单易学的高级编程语言', page: 'learning-python.html' },
-        { title: 'JavaScript', description: 'Web前端开发的核心语言', page: 'learning-javascript.html' },
-        { title: 'HTML/CSS', description: 'Web前端开发的基础技术', page: 'learning-html-css.html' },
-        { title: '数据结构与算法', description: '计算机科学的基础', page: 'learning-algorithms.html' },
-        { title: '大模型', description: '大型语言模型技术', page: 'learning-llm.html' },
-        { title: 'AI技术', description: '人工智能技术', page: 'learning-ai.html' },
-        { title: '前沿技术', description: '探索未来技术趋势', page: 'learning-frontier.html' }
+        { title: 'C# 12', description: '微软最新的现代编程语言，支持泛型属性和主构造函数', page: 'learning-csharp.html' },
+        { title: 'Java 21', description: '跨平台的面向对象编程语言，支持虚拟线程和模式匹配', page: 'learning-java.html' },
+        { title: 'Python 3.13', description: '简单易学的高级编程语言，支持PEP 703无全局解释器锁', page: 'learning-python.html' },
+        { title: 'JavaScript ES2026', description: 'Web前端开发的核心语言，支持管道操作符和装饰器', page: 'learning-javascript.html' },
+        { title: 'HTML5/CSS4', description: 'Web前端开发的基础技术，支持新的布局和动画特性', page: 'learning-html-css.html' },
+        { title: '算法与数据结构', description: '计算机科学的基础，包含最新的算法优化技术', page: 'learning-algorithms.html' },
+        { title: 'GPT-5开发', description: '大型语言模型技术，学习如何开发和部署GPT-5应用', page: 'learning-llm.html' },
+        { title: 'AI技术', description: '人工智能技术，包括深度学习、计算机视觉和自然语言处理', page: 'learning-ai.html' },
+        { title: '6G技术', description: '下一代移动通信技术，探索6G的核心技术和应用场景', page: 'learning-frontier.html' }
     ];
     
     learningCards.forEach((card, index) => {
